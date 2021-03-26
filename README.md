@@ -1,8 +1,8 @@
-# MERNBoilerPlate
+# MERN Boiler Plate
 
 This is a BoilerPlate for MERN Stack. The production version is built ready for deploying on azure and hence already has the relevant script in package.json.
 
-The directory structure splits the react front end and node back end. All react componenets and dependencies . are under the `client` directory. All the node and mongo files are under the `server directory`. React dependencies are installed via yarn within the `client` directory and all the node modules are installed via npm in the `root`. This allows for better version control amongst the dependencies.
+The directory structure splits the react front end and node back end. All react componenets and dependencies are under the `client` directory. All the node and mongo files are under the `server directory`. React dependencies are installed via yarn within the `client` directory and all the node modules are installed via npm in the `root`. This allows for better version control amongst the dependencies.
 
 
 ## Prerequisites
@@ -14,8 +14,8 @@ The directory structure splits the react front end and node back end. All react 
 
 - [NodeJS](https://nodejs.org/en/)
 - [ReactJS](https://reactjs.org/)
-- [ExpressJS] (https://expressjs.com/)
-- [MongoDB] (https://www.mongodb.com/)
+- [ExpressJS](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
 
 
 

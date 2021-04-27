@@ -1,10 +1,10 @@
-name: Build and deploy Node.js app to Github Pages - cowsandbulls
+name: Build and deploy SPA to GH Pages - cowsAndBUlls
 
 on:
-  repository_dispatch:
   push:
     branches:
-      - main  
+      - main
+  
 
 jobs:
   build:
@@ -18,13 +18,33 @@ jobs:
       with:
         node-version: '12.x'
 
-    - name: npm install, build
+    - name: npm install, build, and test
       run: |
         npm install
-        npm run build      
+        npm run build 
 
-    - name: Deploy
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v2
+      with:
+        name: production-files
+        path: ./build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: 'https://manugeorge04.github.io/cowsAndBulls/'
+
+    steps:
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v2
+      with:
+        name: production-files
+        path: ./build
+
+    - name: 'Deploy to GH Pages'      
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
+        publish_dir: ./build      

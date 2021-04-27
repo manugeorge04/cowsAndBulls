@@ -1,23 +1,25 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Suspense } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-import Home from './pages/Home';
-import Join from './pages/Join';
-import NotFound from './pages/NotFound';
-
-import Header from './hoc/Header';
+const Home = React.lazy(() => import('./pages/Home'));
+const Join = React.lazy(() => import('./pages/Join')); 
+const NotFound = React.lazy(() => import('./pages/NotFound'));
+const Header = React.lazy(() =>import('./hoc/Header'));
 
 const Routes = () => {
   return (
     <Fragment>
-      <Header/>
-      <HashRouter>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/join" component={Join} />
-          <Route status={404} exact component={NotFound}/>
-        </Switch>
-      </HashRouter>
+      <Suspense fallback={<CircularProgress />}>
+        <Header />
+        <HashRouter>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/join" component={Join} />
+            <Route status={404} exact component={NotFound}/>
+          </Switch>
+        </HashRouter>
+      </Suspense>
     </Fragment>
   )
 };

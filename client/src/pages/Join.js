@@ -1,9 +1,11 @@
 import React from 'react';
 
+import GameFilter from '../components/GameFilter';
+
 const Join = () => {
   return (
     <div>
-      <h1>My Join header</h1>
+      <GameFilter/>
     </div>
   )
 };

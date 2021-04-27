@@ -1,14 +1,25 @@
 //@import url('https://fonts.googleapis.com/css?family=Montserrat');
-@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
+@import url('https://fonts.googleapis.com/css?family=Verdana');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html {
     font-size: 62.5%;
 }
 
 body {
-    font-family: 'Oswald';
+    font-family: 'Comfortaa';
     font-size: $m-size;
+}
+
+h1 {
+    font-family: 'Verdana';
 }
 
 button {

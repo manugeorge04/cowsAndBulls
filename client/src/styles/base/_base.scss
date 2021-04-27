@@ -15,7 +15,10 @@ html {
 
 body {
     font-family: 'Comfortaa';
-    font-size: $m-size;
+    // font-size: $m-size;
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
 }
 
 h1 {

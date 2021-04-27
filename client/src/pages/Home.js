@@ -1,9 +1,11 @@
 import React from 'react';
 
+import GameFilter from '../components/GameFilter';
+
 const Home = () => {
   return (
     <div>
-      <h1>My home header</h1>
+      <GameFilter/>
     </div>
   )
 };

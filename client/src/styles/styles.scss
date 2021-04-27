@@ -1,2 +1,43 @@
 @import './base/settings';
 @import './base/base';
+
+.header{    
+  width: 100%;
+  height: auto;
+}
+
+.header__container {
+  position: absolute;
+  margin-left: -7%;
+  margin-top: 0%;  
+  text-align: center;
+  width: 55%;
+  display: inline-block;
+  z-index: 1;
+}
+  
+.header__title {
+  font-family: 'Verdana';
+  background: $header-blue;
+  height: auto    ;
+  color: white;
+  margin-top: $m-size;
+  margin-bottom: $m-size;
+  font-size: $xl-size;  
+  padding: $xl-size;
+  border-radius: $m-size;
+}
+
+.header__image__cow{
+  position: relative;  
+  margin-left: 10%;
+  width: 20%;
+  height: auto;
+}
+
+.header__image__bull{
+  position: absolute;  
+  margin-left:39%;
+  width: 20%;
+  height: auto;
+}

@@ -4,7 +4,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Join from './pages/Join';
 import NotFound from './pages/NotFound';
-
+import Footer from './hoc/Footer'
 import Header from './hoc/Header';
 
 const Routes = () => {
@@ -18,6 +18,7 @@ const Routes = () => {
           <Route status={404} exact component={NotFound}/>
         </Switch>
       </HashRouter>
+      <Footer />
     </Fragment>
   )
 };

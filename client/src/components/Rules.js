@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -30,7 +31,14 @@ const useStyles = makeStyles({
     '&:hover': {
       backgroundColor: '#073763ff'
     }
-  }
+  },
+  title: {
+    fontSize: props => props.isPC ? '2.4rem' : '2rem',
+    fontWeight: 500,
+    width: props => props.isPC ? '80%' : '100%',
+    paddingBottom: '1.6rem',
+    height: '8rem'  
+  },
 });
 
 const CardHeaderWithStyle = withStyles((props) => ({
@@ -38,7 +46,7 @@ const CardHeaderWithStyle = withStyles((props) => ({
     fontSize: props => props.isPC ? '2.4rem' : '2rem',
     fontWeight: 500,
     width: props => props.isPC ? '80%' : '100%',
-    paddingBottom: '1.2rem',
+    paddingBottom: '1.6rem',
     height: '8rem'  
   },
   content: {
@@ -53,12 +61,12 @@ const CardHeaderWithStyle = withStyles((props) => ({
 const Rules = (props) => {
   const { isPC } = props;
   const classes = useStyles(props);
-  console.log("ispc", isPC)
+ 
   return (
     <Card className={classes.root}>
       <CardHeaderWithStyle
         isPC={isPC}
-        title="Butter read these first, check out our modes"
+        title={<Typography className={classes.title}>Butter read these first, check out our modes</Typography>}
       />
       <CardContent className={classes.content}>
        <Button  className={classes.button}>

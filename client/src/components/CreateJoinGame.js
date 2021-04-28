@@ -13,11 +13,11 @@ import { UseFormHook } from '../hooks/UseFormHooks';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 225,
+    minWidth: '22.5rem',
     boxShadow: '0px 0px 17px 1px #1D1F26',
     backgroundColor: '#fff',
     border: '0.1rem solid #000',
-    height: props => props.type === 'join' ? '38rem' : '49rem',
+    height: props => props.type === 'join' ? '38rem' : '50rem',
     '& .MuiTextField-root': {
       width: '100%',
       fontSize: '2rem',

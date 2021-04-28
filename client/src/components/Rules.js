@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 225,
+    minWidth: '22.5rem',
     boxShadow: '0px 0px 17px 1px #1D1F26',
     backgroundColor: '#fff',
     border: '0.1rem solid #000',
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
   button: {
     fontSize: '2.4rem',
-    width: props => props.isPC ? '40%' : '80%',
+    width: props => props.isPC ? '50%' : '80%',
     backgroundColor: '#0b5394',
     color: "#fff",
     margin: '1.5rem',
@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 
 const CardHeaderWithStyle = withStyles((props) => ({
   title: {
-    fontSize: props => props.isPC ? '2.8rem' : '2rem',
+    fontSize: props => props.isPC ? '2.4rem' : '2rem',
     fontWeight: 500,
     width: props => props.isPC ? '80%' : '100%',
     paddingBottom: '1.2rem',

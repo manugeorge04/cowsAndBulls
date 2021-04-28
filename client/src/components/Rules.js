@@ -43,9 +43,9 @@ const useStyles = makeStyles({
 
 const CardHeaderWithStyle = withStyles((props) => ({
   title: {
-    fontSize: props => props.isPC ? '2.4rem' : '2rem',
+    // fontSize: props => props.isPC ? '2.4rem' : '2rem',
     fontWeight: 500,
-    width: props => props.isPC ? '80%' : '100%',
+    // width: props => props.isPC ? '80%' : '100%',
     paddingBottom: '1.6rem',
     height: '8rem'  
   },
@@ -65,7 +65,6 @@ const Rules = (props) => {
   return (
     <Card className={classes.root}>
       <CardHeaderWithStyle
-        isPC={isPC}
         title={<Typography className={classes.title}>Butter read these first, check out our modes</Typography>}
       />
       <CardContent className={classes.content}>

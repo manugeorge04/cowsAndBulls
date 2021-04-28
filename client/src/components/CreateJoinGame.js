@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     boxShadow: '0px 0px 17px 1px #1D1F26',
     backgroundColor: '#fff',
     border: '0.1rem solid #000',
-    height: props => props.type === 'join' ? '38rem' : '50rem',
+    height: props => props.type === 'join' && !props.isPC ? '38rem' : '50rem',
     '& .MuiTextField-root': {
       width: '100%',
       fontSize: '2rem',
@@ -80,7 +80,7 @@ const CardHeaderWithStyle = withStyles((props) => ({
   title: {
     fontSize: '2.8rem',
     fontWeight: 500,
-    width: props => props.isPC ? '80%' : '100%',
+    // width: props => props.isPC ? '80%' : '100%',
     paddingBottom: '1.6rem',
     height: '8rem' 
   },
@@ -188,7 +188,7 @@ const CreateJoinGame = (props) => {
         </div>
        <Button className={classes.button}
        onClick={onsubmit}>
-         Host</Button>
+        {type === 'join' ? "Join" : "Host" }</Button>
       </CardContent>
     </Card>
   );

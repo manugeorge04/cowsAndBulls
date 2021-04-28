@@ -17,6 +17,13 @@ const useStyles = makeStyles(theme => ({
   },
   error: {
     color: 'red !important'
+  },
+  select: {
+    ' & .MuiInputBase-input':{
+      font: 'revert',
+      fontFamily: 'Comfortaa'
+    }
+
   }
 }));
 
@@ -29,6 +36,7 @@ const SelectField = (props) => {
     <InputLabel htmlFor={name}>{label}</InputLabel>
     <Select
       native
+      className={classes.select}
       value={selectedValue}
       onChange={handleSelectValues}
       label={label}

@@ -21,8 +21,7 @@ const useStyles = makeStyles((theme) => ({
 const CreateJoinContainer = (props) => {
   const { type } = props;
   const classes = useStyles();
-  const isPC = useMediaQuery("(min-width:768px)")
-
+  const isPC = useMediaQuery("(min-width:768px)", {noSsr:true})    
   return (
     <Grid container style={{flexDirection: !isPC && 'column', padding: !isPC && '0'}}
      className={classes.root} align="center" spacing={2}>

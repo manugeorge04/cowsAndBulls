@@ -1,51 +1,41 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const useStyles = makeStyles({
   root: {
-    '& .MuiTextField-root': {
-      width: '100%',
-      fontSize: '2rem',
-      color: '#000',
-      border: '1px solid white'
-    },
-    '& .MuiFormHelperText-root': {
-      fontSize: '1rem',
-      color: '#000',
-    }, 
-    '& .MuiInputLabel-root': {
-      fontSize: '1.3rem',
-      backgroundColor: "white",
-      paddingRight: '.5rem',
-      color: '#000',
-    },
-    '& .MuiInputBase-input': {
-      fontSize: '1.7rem',
-      backgroundColor: "#f3f3f3ff"
-    }
   },
   inputField: {
     width: '100%',
     fontSize: '2.4rem',
-    marginBottom: '1.2rem'
+    // marginBottom: '1.2rem'
   },
+  error: {
+    color: 'red !important'
+  }
 });
 
 const InputField = (props) => {
-  const { name, label, defaultValue, error } = props;
+  const { name, label, defaultValue, error, handleInputValues } = props;
   const classes = useStyles();
 
   return (
-        <TextField
+    <Fragment>
+       <TextField
           id={name}
           label={label}
+          name={name}
           placeholder={defaultValue}
-          helperText={error}
-          error={!!error}
+          // helperText={error}
+          // error={!!error}
           variant="outlined"
+          onChange={handleInputValues}
           className={`${classes.inputField} ${classes.root}`}
         />
+        <FormHelperText className={classes.error}
+        style={{marginBottom: '1.2rem'}}>{error}</FormHelperText>
+    </Fragment>
   );
 }
 

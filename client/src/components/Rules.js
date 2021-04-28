@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
@@ -12,7 +11,7 @@ const useStyles = makeStyles({
     boxShadow: '0px 0px 17px 1px #1D1F26',
     backgroundColor: '#fff',
     border: '0.1rem solid #000',
-    height: '40rem'
+    height: props => props.isPC ? '50rem' : '40rem'
   },
   content: {
     display: 'flex',
@@ -22,7 +21,7 @@ const useStyles = makeStyles({
   },
   button: {
     fontSize: '2.4rem',
-    width: '40%',
+    width: props => props.isPC ? '40%' : '80%',
     backgroundColor: '#0b5394',
     color: "#fff",
     margin: '1.5rem',
@@ -36,9 +35,9 @@ const useStyles = makeStyles({
 
 const CardHeaderWithStyle = withStyles((props) => ({
   title: {
-    fontSize: '2.8rem',
+    fontSize: props => props.isPC ? '2.8rem' : '2rem',
     fontWeight: 500,
-    width: '80%',
+    width: props => props.isPC ? '80%' : '100%',
     paddingBottom: '1.2rem',
     height: '8rem'  
   },
@@ -51,16 +50,18 @@ const CardHeaderWithStyle = withStyles((props) => ({
   }
 }))(CardHeader);
 
-const Rules = () => {
-  const classes = useStyles();
-
+const Rules = (props) => {
+  const { isPC } = props;
+  const classes = useStyles(props);
+  console.log("ispc", isPC)
   return (
     <Card className={classes.root}>
       <CardHeaderWithStyle
+        isPC={isPC}
         title="Butter read these first, check out our modes"
       />
       <CardContent className={classes.content}>
-       <Button className={classes.button}>
+       <Button  className={classes.button}>
          Herds</Button>
        <Button className={classes.button}>
          Bullfight</Button>

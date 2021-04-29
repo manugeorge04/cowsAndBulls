@@ -1,6 +1,7 @@
 import React,{useEffect, useContext} from 'react';
 
 import GameFilter from '../components/GameFilter';
+import CreateJoinContainer from '../components/CreateJoinContainer';
 import MyContext from '../context/MyContext';
 
 const Join = () => {
@@ -13,6 +14,7 @@ const Join = () => {
   return (
     <div>
       <GameFilter/>
+      <CreateJoinContainer type="join"/>
     </div>
   )
 };

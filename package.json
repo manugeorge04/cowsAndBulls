@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "homepage": "https://manugeorge004.github.io/cowsAndBulls",
+  "homepage": "http://manugeorge004.github.io/cowsAndBulls",
   "dependencies": {
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
@@ -17,7 +17,7 @@
     "start": "node ./server.js",
     "prestart": "npm run build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d client/public/dist",
+    "deploy": "gh-pages -d client/public",
     "dev": "nodemon ./server.js",
     "build": "cd ./client && yarn install && yarn run build:prod"
   },

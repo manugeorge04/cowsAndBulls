@@ -27,7 +27,10 @@ const RulesModal = (props) => {
   return(
     <Modal
       open={props.Open_BtnId.open}
-      onClose={props.handleOnClose}      
+      onClose={()=>{ 
+          setDirection('up')
+          props.handleOnClose()
+        }}      
     >
       <Fragment>    { //gives a warning if RulesCarousel isn;t wrapped with Fragment; need to figure out why!
                     }

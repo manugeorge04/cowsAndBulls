@@ -4,6 +4,7 @@ import RulesCarouselCard from './RulesCarouselCard';
 
 const RulesModal = (props) => {    
   const [btnId, setBtnId] = useState(0)
+  const [prev_btnId, setPrevBtnId] = useState(0)
   const [direction, setDirection] = useState('up')
   const [incoming, toggleIncoming] = useState(true)
 
@@ -11,14 +12,15 @@ const RulesModal = (props) => {
     setBtnId(props.Open_BtnId.btnId)
   },[props.Open_BtnId.btnId])  
 
-  const handleOnBackClick= () => {    
+  const handleOnBackClick= () => { 
+    setPrevBtnId(btnId)   
     setBtnId(btnId-1===0?3:btnId-1)
     setDirection('left')
-    toggleIncoming(!incoming)
-    
+    toggleIncoming(!incoming)    
   }
 
   const handleOnForwardClick = () => {
+    setPrevBtnId(btnId)
     setBtnId(btnId+1===4?1:btnId+1)
     setDirection('right')
     toggleIncoming(!incoming)
@@ -37,14 +39,14 @@ const RulesModal = (props) => {
         <RulesCarouselCard 
           direction={incoming==false?direction==='left'? 'right': 'left':direction}
           in={incoming}
-          btnId={btnId}
+          btnId={incoming===false?prev_btnId:btnId}
           handleOnForwardClick={handleOnForwardClick}
           handleOnBackClick={handleOnBackClick}
         />       
         <RulesCarouselCard 
           direction={incoming==false?direction:direction==='left'? 'right': 'left'}
           in={!incoming}
-          btnId={btnId}
+          btnId={!incoming===false?prev_btnId:btnId}
           handleOnForwardClick={handleOnForwardClick}
           handleOnBackClick={handleOnBackClick}
         />  

@@ -6,29 +6,35 @@
   width: 100%;
   height: auto;  
   margin: $m-size auto $s-size 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 
 .header__container {
-  position: absolute;
-  //margin-left: -7%;
-  //margin-top: 0%;  
-  margin: 2% 0 auto -7%;
+  // position: absolute;
+  margin-left: -7%;
+  // margin-top: 0%;  
+  // margin: 2% 0 auto -7%;
   text-align: center;
-  width: 55%;
-  display: inline-block;
-  z-index: 1;
+  width: 60%;
+  // display: inline-block;
+  z-index: 1000;
+  // height: 5rem;
+
 }
   
 .header__title {
   font-family: 'Verdana';
   background: $header-blue;
-  height: auto    ;
+  height: auto;
   color: white;
-  // margin-top: $m-size;
-  // margin-bottom: $m-size;
-  
   padding: $m-size;
   border-radius: $m-size;  
+   // margin-top: $m-size;
+  // margin-bottom: $m-size;
+  
 }
 
 .header__title h1{
@@ -46,15 +52,15 @@
 }
 
 .header__image__cow{
-  position: relative;  
-  margin-left: -72.5%;
+  // position: relative;  
+  margin-left: 2rem;
   width: 22%;
   height: auto;
 }
 
 .header__image__bull{
-  position: absolute;  
-  margin-left:39%;
+  // position: absolute;  
+  margin-left:-7%;
   width: 18%;
   height: auto;
 }

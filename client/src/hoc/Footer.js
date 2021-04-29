@@ -51,7 +51,7 @@ const Footer = () => {
         className={classes.root}
         startIcon={BehanceIcon}
       >
-      Rahul Nagraj</Button>
+      Rahul Nagaraj</Button>
     </div>
   )
 };

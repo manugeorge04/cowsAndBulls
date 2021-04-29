@@ -15,7 +15,7 @@ const Header = () => {
       <div className='header__container'>              
         <div className='header__title'>
         <Typography variant="h1">Cows and Bulls</Typography>
-        <Typography variant="h6">{subHeader || <br></br>}</Typography>
+        <Typography variant="h3">{subHeader || <br></br>}</Typography>
         </div>           
       </div>
       <img className='header__image__bull' src='images/bull.png' />

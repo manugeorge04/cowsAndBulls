@@ -24,15 +24,13 @@
     border-radius: $m-size;  
   }
   
-  .header__title h1{
-    font-size: $xl-size; 
+  .header__title h1{     
     margin: 0 auto; 
     margin-bottom: $m-size;
     text-shadow: 0.4rem 0.4rem 0.3rem #1b1b1b;
   }
   
-  .header__title h6{
-    font-size: 2.4rem;  
+  .header__title h3{    
     font-family: 'Comfortaa';
     margin: 0 auto;
     font-weight: normal;

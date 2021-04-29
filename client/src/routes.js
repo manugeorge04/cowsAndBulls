@@ -2,6 +2,7 @@ import React, { Fragment, Suspense } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+
 const Home = React.lazy(() => import('./pages/Home'));
 const Join = React.lazy(() => import('./pages/Join')); 
 const NotFound = React.lazy(() => import('./pages/NotFound'));
@@ -10,8 +11,8 @@ const Header = React.lazy(() =>import('./hoc/Header'));
 const Routes = () => {
   return (
     <Fragment>
+    <Header />
       <Suspense fallback={<CircularProgress />}>
-        <Header />
         <HashRouter>
           <Switch>
             <Route path="/" exact component={Home} />
@@ -20,6 +21,7 @@ const Routes = () => {
           </Switch>
         </HashRouter>
       </Suspense>
+      <Footer />
     </Fragment>
   )
 };

@@ -6,7 +6,7 @@ import {Button, Icon, makeStyles} from "@material-ui/core";
 const useStyles = makeStyles(() => ({
     root: {
         textTransform: 'none',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#a8a8a8',
         '& .MuiButton-label': {
             fontSize:'1.2rem',
             fontWeight:'bold'

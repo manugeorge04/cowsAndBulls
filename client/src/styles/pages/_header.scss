@@ -1,0 +1,51 @@
+.header{    
+    width: 100%;
+    height: auto;  
+    margin: $m-size auto $s-size 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .header__container {    
+    margin-left: -7%;
+    text-align: center;
+    width: 64%;
+    z-index: 1000;
+  }
+    
+  .header__title {
+    font-family: 'Verdana';
+    background: $header-blue;
+    height: auto;
+    color: white;
+    padding: $m-size;
+    border-radius: $m-size;  
+  }
+  
+  .header__title h1{
+    font-size: $xl-size; 
+    margin: 0 auto; 
+    margin-bottom: $m-size;
+    text-shadow: 0.4rem 0.4rem 0.3rem #1b1b1b;
+  }
+  
+  .header__title h6{
+    font-size: 2.4rem;  
+    font-family: 'Comfortaa';
+    margin: 0 auto;
+    font-weight: normal;
+  }
+  
+  .header__image__cow{
+    margin-left: 2rem;
+    width: 18%;
+    height: auto;
+  }
+  
+  .header__image__bull{
+    margin-left:-7%;
+    width: 18%;
+    height: auto;
+  }

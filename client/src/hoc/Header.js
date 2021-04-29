@@ -16,8 +16,8 @@ const Header = () => {
       <div className='header__container'>              
         <div className='header__title'>
         
-        <Typography variant={isPC?"h1":"h3"} clasName='headerText'>Cows and Bulls</Typography>
-        <Typography variant={isPC?"h3":"h6"} clasName='subHeaderText'>{subHeader || <br></br>}</Typography>
+        <Typography variant={isPC?"h1":"h3"} className='headerText'>Cows and Bulls</Typography>
+        <Typography variant={isPC?"h3":"h6"} className='subHeaderText'>{subHeader || <br></br>}</Typography>
         </div>           
       </div>
       <img className='header__image__bull' src='images/bull.png' />

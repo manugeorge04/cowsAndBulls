@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     display:'flex',
     width: "50%",    
-    height:'auto',
+    height:'80%',
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],    
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     left: '25%',
     [theme.breakpoints.down('sm')]: {
       width: "90%",      
-      top: '15%',
+      top: '10%',
       left: '5%',      
     },
   },
@@ -50,7 +50,13 @@ const RulesCarouselCard = (props) => {
   const classes= useStyles()  
 
   return(
-    <Slide direction={props.direction} in={props.in} timeout={700} mountOnEnter unmountOnExit>
+    <Slide
+      direction={props.direction}
+      in={props.in}
+      timeout={{ enter: 750, exit: 450}}
+      mountOnEnter
+      unmountOnExit
+    >
     <Paper 
     variant="outlined" 
     className={classes.paper}

@@ -1,5 +1,22 @@
 import React, {Fragment} from 'react'
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles( (theme) => ({
+  
+  wrapIcon: {
+    verticalAlign: 'middle',
+    display: 'inline-flex'
+  },  
+  Icon: {
+    width: '10%',
+    [theme.breakpoints.down('sm')]: {
+      width: "15%",            
+    },
+    height: 'auto'
+  },
+
+}))
 
 export const Cowputer = () => {return(
   <Fragment>
@@ -43,4 +60,30 @@ export const Herds = () => {return(
     One random player from each team provides the 4-letter word that the other team must guess. The team that guesses the answer first wins the round. Each team gets 12 guesses in total distributed equally.
     </Typography>    
   </Fragment>    
+)}
+
+export const ScoringRules = () => {
+  
+  const classes= useStyles()
+
+  return(
+  <Fragment>
+    <Typography variant="h4" align="center" paragraph={true}>
+        Enter a word and you will be told how many COWS and BULLS lie in it. Words having repeated letters will be considered invalid.
+        Eg: HOOF, EYES    
+    </Typography>        
+    <Typography variant="h4" align="center" paragraph={true} className={classes.wrapIcon} >
+      <embed  className={classes.Icon} src="images/cow.svg" />
+      COW is a correct letter
+      in the wrong position.
+      Eg: Ans- HIDE Guess- SKIN
+      I is a COW          
+    </Typography>
+    <Typography variant="h4" align="center"  className={classes.wrapIcon} >
+    <embed  className={classes.Icon} src="images/bull.svg" /> BULL is a correct letter
+      in the correct position.
+      Eg: Ans- CALF Guess- MILK
+      L is a BULL          
+    </Typography>      
+  </Fragment>
 )}

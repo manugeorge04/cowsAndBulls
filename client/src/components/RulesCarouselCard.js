@@ -6,9 +6,8 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import Typography from '@material-ui/core/Typography';
 
-import {Cowputer, Herds, Bullfight} from '../utils/rulesContent'
+import {Cowputer, Herds, Bullfight, ScoringRules} from '../utils/rulesContent'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,13 +33,6 @@ const useStyles = makeStyles((theme) => ({
   wrapIcon: {
     verticalAlign: 'middle',
     display: 'inline-flex'
-  },
-  Icon: {
-    width: '10%',
-    [theme.breakpoints.down('sm')]: {
-      width: "15%",            
-    },
-    height: 'auto'
   },
   closeButton: {
     position:'absolute',
@@ -74,23 +66,7 @@ const RulesCarouselCard = (props) => {
         {props.btnId===3 && <Cowputer />}
         {props.btnId===2 && <Bullfight/>}
         {props.btnId===1 && <Herds />}
-        <Typography variant="h4" align="center" paragraph={true}>
-            Enter a word and you will be told how many COWS and BULLS lie in it. Words having repeated letters will be considered invalid.
-            Eg: HOOF, EYES    
-        </Typography>        
-        <Typography variant="h4" align="center" paragraph={true} className={classes.wrapIcon} >
-          <embed  className={classes.Icon} src="images/cow.svg" />
-          COW is a correct letter
-          in the wrong position.
-          Eg: Ans- HIDE Guess- SKIN
-          I is a COW          
-        </Typography>
-        <Typography variant="h4" align="center"  className={classes.wrapIcon} >
-        <embed  className={classes.Icon} src="images/bull.svg" /> BULL is a correct letter
-          in the correct position.
-          Eg: Ans- CALF Guess- MILK
-          L is a BULL          
-        </Typography>      
+        <ScoringRules />
       </div>        
 
       <div className={classes.closeButton}>
@@ -111,7 +87,3 @@ const RulesCarouselCard = (props) => {
 }
 
 export default RulesCarouselCard
-
-
-
-//className={classes.wrapIcon}

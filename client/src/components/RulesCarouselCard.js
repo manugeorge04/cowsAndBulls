@@ -7,6 +7,8 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Slide from '@material-ui/core/Slide';
 
+import {Cowputer, Herds, Bullfight} from '../utils/rulesContent'
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,18 +44,9 @@ const RulesCarouselCard = (props) => {
         <ArrowBackIosIcon fontSize="large" />
       </IconButton>      
         <div className={classes.content}>
-          <Typography variant="h1">
-            {props.btnId}
-          </Typography>
-          <Typography variant="h1">
-            {props.btnId}
-          </Typography>
-          <Typography variant="h1">
-            {props.btnId}
-          </Typography>
-          <Typography variant="h1">
-            {props.btnId}
-          </Typography>
+          {props.btnId===3 && <Cowputer />}
+          {props.btnId===2 && <Bullfight/>}
+          {props.btnId===1 && <Herds />}
         </div>        
       <IconButton 
       className={classes.button}

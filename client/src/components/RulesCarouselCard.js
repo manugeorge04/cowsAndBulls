@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Typography from '@material-ui/core/Typography';
 
@@ -40,7 +41,17 @@ const useStyles = makeStyles((theme) => ({
       width: "15%",            
     },
     height: 'auto'
-  }  
+  },
+  closeButton: {
+    position:'absolute',
+    top:"1%",
+    left:'93%',
+    height:'20%',
+    zIndex:'20',
+    [theme.breakpoints.down('sm')]: {
+      left:'86%',
+    },    
+  }
 }));
 
 const RulesCarouselCard = (props) => {
@@ -79,16 +90,21 @@ const RulesCarouselCard = (props) => {
           in the correct position.
           Eg: Ans- CALF Guess- MILK
           L is a BULL          
-        </Typography>
-
+        </Typography>      
       </div>        
 
+      <div className={classes.closeButton}>
+      <IconButton color="primary" onClick={props.handleOnClose}>
+        <CloseIcon fontSize="large"/>
+      </IconButton>
+      </div>
       <IconButton 
       className={classes.button}
       onClick={props.handleOnForwardClick}
       >
         <ArrowForwardIosIcon fontSize="large" />
       </IconButton>
+      
     </Paper>
     </Slide>
   )

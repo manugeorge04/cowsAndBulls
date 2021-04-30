@@ -42,6 +42,7 @@ const RulesModal = (props) => {
           btnId={incoming===false?prev_btnId:btnId}
           handleOnForwardClick={handleOnForwardClick}
           handleOnBackClick={handleOnBackClick}
+          handleOnClose={props.handleOnClose}
         />       
         <RulesCarouselCard 
           direction={incoming==false?direction:direction==='left'? 'right': 'left'}
@@ -49,6 +50,7 @@ const RulesModal = (props) => {
           btnId={!incoming===false?prev_btnId:btnId}
           handleOnForwardClick={handleOnForwardClick}
           handleOnBackClick={handleOnBackClick}
+          handleOnClose={props.handleOnClose}
         />  
       </Fragment>
     </Modal>

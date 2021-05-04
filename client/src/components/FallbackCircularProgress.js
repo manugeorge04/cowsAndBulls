@@ -3,28 +3,29 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-const useStylesFacebook = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     top:'38vh',
     right:'10vh'
   },
   bottom: {
-    color: '#a6a6a6ff',
+    color: '#D3D3D3',
     position: 'absolute',    
   },
   top: {
-    color: '#1a90ff',
+    color: theme.palette,
     animationDuration: '550ms',
     position: 'absolute',    
+    animationDuration: '1550ms'
   },
   circle: {
     strokeLinecap: 'round',
   },
 }));
 
-const FallbackCircularProgress = (props) => {
-  const classes = useStylesFacebook();
+const FallbackCircularProgress = () => {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -32,8 +33,7 @@ const FallbackCircularProgress = (props) => {
         variant="determinate"
         className={classes.bottom}
         size={150}
-        thickness={4}
-        {...props}
+        thickness={4}        
         value={100}
       />
       <CircularProgress
@@ -44,8 +44,7 @@ const FallbackCircularProgress = (props) => {
           circle: classes.circle,
         }}
         size={150}
-        thickness={4}
-        {...props}
+        thickness={4}        
       />
     </div>
   );

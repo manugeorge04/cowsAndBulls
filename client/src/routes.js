@@ -1,6 +1,5 @@
 import React, { Fragment, Suspense, useContext, useEffect } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import MyContext from './context/MyContext';
 import FallbackCircularProgress from './components/FallbackCircularProgress'
 
@@ -9,6 +8,7 @@ const Join = React.lazy(() => import('./pages/Join'));
 const NotFound = React.lazy(() => import('./pages/NotFound'));
 const Header = React.lazy(() =>import('./hoc/Header'));
 const Footer = React.lazy(() =>import('./hoc/Footer'));
+const Cowputer = React.lazy(() => import('./pages/Cowputer'))
 
 const Routes = () => {
   const { subHeader } = useContext(MyContext);  
@@ -20,6 +20,7 @@ const Routes = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/join" component={Join} />            
+            <Route path="/cowputer" component={Cowputer} />            
             <Route status={404} exact component={NotFound}/>
           </Switch>
         </HashRouter>

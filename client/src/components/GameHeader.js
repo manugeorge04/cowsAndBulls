@@ -55,8 +55,10 @@ const GameHeader = () => {
     if (letter === guessWord[e.target.id]){
       letter = e.target.value[0].toUpperCase()
     }     
-    if (onlyAlphabets.test(letter)) {
-      setGuessWord ({...guessWord, [e.target.id]:letter})
+    if (onlyAlphabets.test(letter) || letter === "") {
+      setGuessWord ({...guessWord, [e.target.id]:letter})      
+    }
+    if (letter !== ""){
       e.target.id === "letter1" ? inputRef.current.focusBox2() : e.target.id === "letter2" ? inputRef.current.focusBox3() : inputRef.current.focusBox4()
     }
   }

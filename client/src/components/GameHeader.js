@@ -1,27 +1,9 @@
-import { makeStyles, TextField, Typography, useMediaQuery } from '@material-ui/core'
+import { makeStyles, Typography, useMediaQuery } from '@material-ui/core'
 import React, { Fragment, useRef, useState } from 'react'
+import InputTextBoxes from './InputTextBoxes'
 
 
-const useStyles = makeStyles((theme) => ({
-  textbox:{
-    margin: theme.spacing(1),    
-    width: '5rem',
-    [theme.breakpoints.down('sm')]: {
-      width: '10rem',
-    },          
-    height:'5rem' ,   
-    textAlign: 'center',
-    '& .MuiInputBase-input':{
-      fontSize: '2rem', 
-      paddingLeft: '1.5rem' ,
-      [theme.breakpoints.up('sm')]: {        
-        fontSize: '3rem', 
-      },          
-    },
-    '& .MuiInputBase-root':{
-      height:'5rem'      
-    }     
-  },
+const useStyles = makeStyles((theme) => ({  
   cheer: {    
     width:'90%',    
   },
@@ -63,9 +45,9 @@ const GameHeader = () => {
     }
   )
 
-  const letter2Ref = useRef(null)
-  const letter3Ref = useRef(null)
-  const letter4Ref = useRef(null)
+
+  const inputRef = useRef(null)
+    
   const onlyAlphabets = new RegExp(/[a-zA-Z]/);
   
   const handleOnChange = (e) => {
@@ -75,7 +57,7 @@ const GameHeader = () => {
     }     
     if (onlyAlphabets.test(letter)) {
       setGuessWord ({...guessWord, [e.target.id]:letter})
-      e.target.id === "letter1" ? letter2Ref.current.focus() : e.target.id === "letter2" ? letter3Ref.current.focus() : letter4Ref.current.focus()
+      e.target.id === "letter1" ? inputRef.current.focusBox2() : e.target.id === "letter2" ? inputRef.current.focusBox3() : inputRef.current.focusBox4()
     }
   }
   
@@ -85,31 +67,12 @@ const GameHeader = () => {
     <Fragment>      
     <div className="gameHeader">      
       {isPC && <GameHeaderCheer />}
-      <div className="gameHeader__guess">        
-        <TextField   className={classes.textbox}
-          id = "letter1"
-          value = {guessWord.letter1}
-          onChange = {handleOnChange}          
-        />
-        <TextField   className={classes.textbox}
-          id = "letter2"
-          value = {guessWord.letter2}
-          onChange = {handleOnChange}
-          inputRef	= {letter2Ref}
-        />
-        <TextField   className={classes.textbox}
-          id = "letter3"
-          value = {guessWord.letter3}
-          onChange = {handleOnChange}
-          inputRef	= {letter3Ref}
-        />
-        <TextField   className={classes.textbox}
-          id = "letter4"
-          value = {guessWord.letter4}
-          onChange = {handleOnChange}
-          inputRef	= {letter4Ref}
-        />                
-      </div>
+      <InputTextBoxes         
+        handleOnChange={handleOnChange}
+        variant = {"standard"}
+        ref = {inputRef}
+        guessWord = {guessWord}
+      />            
       <div className="gameHeader__score">
         <embed  className={classes.Icon} src="images/cow.svg" />
         <embed  className={classes.Icon} src="images/bull.svg" />

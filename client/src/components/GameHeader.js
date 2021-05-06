@@ -1,16 +1,22 @@
-import { makeStyles, TextField, Typography } from '@material-ui/core'
-import React, { useRef, useState } from 'react'
+import { makeStyles, TextField, Typography, useMediaQuery } from '@material-ui/core'
+import React, { Fragment, useRef, useState } from 'react'
 
 
 const useStyles = makeStyles((theme) => ({
   textbox:{
     margin: theme.spacing(1),    
     width: '5rem',
+    [theme.breakpoints.down('sm')]: {
+      width: '10rem',
+    },          
     height:'5rem' ,   
     textAlign: 'center',
     '& .MuiInputBase-input':{
-      fontSize: '3rem',     
-      paddingLeft: '1.5rem' 
+      fontSize: '2rem', 
+      paddingLeft: '1.5rem' ,
+      [theme.breakpoints.up('sm')]: {        
+        fontSize: '3rem', 
+      },          
     },
     '& .MuiInputBase-root':{
       height:'5rem'      
@@ -20,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     width:'90%',    
   },
   Icon: {
-    width: '30%',
+    width: '20%',
     [theme.breakpoints.down('sm')]: {
       width: "30%",            
     },
@@ -28,6 +34,21 @@ const useStyles = makeStyles((theme) => ({
   },
 })
 )
+
+const GameHeaderCheer = () => {
+  const classes = useStyles()
+
+  return(
+    <div className="gameHeader__cheer">
+      <Typography className={classes.cheer} variant="h4" align="center">
+        Player,
+      </Typography>
+      <Typography className={classes.cheer} variant="h4" align="center">
+        Your Moove!
+      </Typography>
+    </div>
+  )
+}
 
 const GameHeader = () => {
 
@@ -57,18 +78,14 @@ const GameHeader = () => {
       e.target.id === "letter1" ? letter2Ref.current.focus() : e.target.id === "letter2" ? letter3Ref.current.focus() : letter4Ref.current.focus()
     }
   }
-
+  
+  const isPC = useMediaQuery("(min-width:45rem)", {noSsr:true})
+  
   return(
-    <div className="gameHeader">
-      <div className="gameHeader__cheer">
-        <Typography className={classes.cheer} variant="h5" align="center">
-          Player,
-        </Typography>
-        <Typography className={classes.cheer} variant="h5" align="center">
-          Your Moove!
-        </Typography>
-      </div>
-      <div className="gameHeader__guess">
+    <Fragment>      
+    <div className="gameHeader">      
+      {isPC && <GameHeaderCheer />}
+      <div className="gameHeader__guess">        
         <TextField   className={classes.textbox}
           id = "letter1"
           value = {guessWord.letter1}
@@ -98,6 +115,7 @@ const GameHeader = () => {
         <embed  className={classes.Icon} src="images/bull.svg" />
       </div>
     </div>
+    </Fragment>
   )  
 }
 

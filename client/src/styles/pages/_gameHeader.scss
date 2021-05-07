@@ -1,0 +1,30 @@
+.gameHeader {
+    display: flex;    
+    width: 100%;
+    justify-content: space-between;
+}
+
+.gameHeader__cheer{
+    display: flex;
+    flex-direction: column;
+    width:20%;
+    margin-top: 7rem;
+    padding-left:5% ;
+}
+
+.gameHeader__guess{
+    display: flex;
+    justify-content: space-evenly;
+    width:40%;
+    margin-top: 5rem;  
+    @media(max-width: $desktop-breakpoint) {
+        width:60%;
+        margin-top: 1.5rem;
+      } 
+}
+
+.gameHeader__score{
+    display: flex;
+    justify-content: space-around;
+    width:40%
+}

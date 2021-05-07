@@ -1,10 +1,10 @@
 import { makeStyles, TextField } from '@material-ui/core'
-import React, { forwardRef, useImperativeHandle, useRef } from 'react'
+import React, { forwardRef, Fragment, useImperativeHandle, useRef } from 'react'
 
 const useStyles = makeStyles((theme) => ({
   textbox:{
     margin: theme.spacing(1),    
-    width: '5rem',
+    width: '5.7rem',
     [theme.breakpoints.down('sm')]: {
       width: '10rem',
     },          
@@ -25,50 +25,59 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const InputTextBoxes = forwardRef(({handleOnChange, variant, guessWord}, ref) => {
+const InputTextBoxes = forwardRef(({handleOnChange, variant, guessWord, handleOnKeyDown, id, disabled}, ref) => {
 
+  const letter1Ref = useRef(null)
   const letter2Ref = useRef(null)
   const letter3Ref = useRef(null)
   const letter4Ref = useRef(null)
 
   useImperativeHandle(ref, () => ({
+    focusBox1: () => letter1Ref.current.focus(),
     focusBox2: () => letter2Ref.current.focus(),
     focusBox3: () => letter3Ref.current.focus(),
     focusBox4: () => letter4Ref.current.focus(),
+    scrollToEnd : () => letter4Ref.current.scrollIntoView({ behavior: 'smooth' }),
   }))
 
   const classes= useStyles()
 
   return(
-    <div className="gameHeader__guess">        
+    <Fragment>    
       <TextField   className={classes.textbox}
-        id = "letter1"
+        id = {`${id}_letter1`}
         value = {guessWord.letter1}
-        onChange = {handleOnChange}  
-        variant = {variant}        
+        onChange = {handleOnChange}
+        inputRef	= {letter1Ref}
+        variant = {variant}      
+        disabled={disabled}  
       />
       <TextField   className={classes.textbox}
-        id = "letter2"
+        id = {`${id}_letter2`}
         value = {guessWord.letter2}
         onChange = {handleOnChange}
         inputRef	= {letter2Ref}
         variant = {variant}        
+        disabled={disabled}  
       />
       <TextField   className={classes.textbox}
-        id = "letter3"
+        id = {`${id}_letter3`}
         value = {guessWord.letter3}
         onChange = {handleOnChange}
         inputRef	= {letter3Ref}
-        variant = {variant}        
+        variant = {variant}      
+        disabled={disabled}    
       />
       <TextField   className={classes.textbox}
-        id = "letter4"
+        id = {`${id}_letter4`}
         value = {guessWord.letter4}
         onChange = {handleOnChange}
         inputRef	= {letter4Ref}
-        variant = {variant}        
+        variant = {variant} 
+        disabled={disabled}  
+        onKeyDown= {handleOnKeyDown}
       />                
-    </div>
+    </Fragment>
   )    
 })
 

@@ -1,36 +1,40 @@
 .container{
     display: flex;
     width: 88%;  
-    margin:0 auto;  
+    margin:0 auto; 
+    flex-direction: column; 
 }
 
-.gameHeader {
-    display: flex;    
+.gameBody {
+    margin-top: 3rem;
+    display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
-.gameHeader__cheer{
-    display: flex;
-    flex-direction: column;
-    width:20%;
-    margin-top: 7rem;
+.slNo{    
+    width:20%;    
     padding-left:5% ;
+    margin-top: 2rem;
 }
 
-.gameHeader__guess{
+.userGuess{
     display: flex;
     justify-content: space-evenly;
-    width:40%;
-    margin-top: 5rem;  
+    width:40%;    
     @media(max-width: $desktop-breakpoint) {
-        width:60%;
-        margin-top: 1.5rem;
+        width:60%;        
       } 
 }
 
-.gameHeader__score{
-    display: flex;
+.cowScore{    
     justify-content: space-around;
-    width:40%
+    width:20%;
+    margin-top: 2rem;
+}
+
+.bullScore{    
+    justify-content: space-around;
+    width:20%;
+    margin-top: 2rem;
 }

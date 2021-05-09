@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 import { useMediaQuery } from "@material-ui/core";
+import { NavLink } from 'react-router-dom';
 
 import TeamOne from './TeamOne';
 import TeamTwo from './TeamTwo';
@@ -108,6 +109,16 @@ const EachModeContent = (mode, isPC) => {
     return (
       <CardContent>
          <BullfightPlayerList players={players} isPC={isPC}/>
+      </CardContent>
+    )
+  } else {
+    return (
+      <CardContent className={classes.cowputer}>
+        <Typography variant="h2">Uh oh! Looks like you've navigated to a page that doesn't exist.</Typography>
+        <NavLink to="/join" exact={true} 
+       style={{textDecoration: 'none'}}>
+         <Typography variant="h4">Go back</Typography>
+         </NavLink>
       </CardContent>
     )
   }

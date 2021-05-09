@@ -21,9 +21,9 @@ const useStyles = makeStyles((theme) => ({
     top: '10%',
     left: '25%',
     [theme.breakpoints.down('sm')]: {
-      width: "90%",      
+      width: "100%",      
       top: '10%',
-      left: '5%',      
+      left: '0%'
     },
   },
   content: {
@@ -52,8 +52,7 @@ const RulesCarouselCard = (props) => {
   return(
     <Slide
       direction={props.direction}
-      in={props.in}
-      timeout={{ enter: 750, exit: 450}}
+      in={props.in}      
       mountOnEnter
       unmountOnExit
     >

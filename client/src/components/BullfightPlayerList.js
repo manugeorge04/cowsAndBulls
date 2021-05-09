@@ -4,16 +4,12 @@ import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: '2rem',
+    padding: props => props.isPC ? '2rem' : '0',
     display: 'flex',
     height: '50rem',
   },
-  team: {
-    backgroundColor: '#f3f3f3ff',
-    padding: '1.5rem'
-  },
   players: {
-    padding: '3.5rem'
+    padding: props => props.isPC ? '3.5rem' : '4rem 3.5rem'
   },
   playerDiv: {
     width: '50%',
@@ -22,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 const BullfightPlayerList = (props) => {
-  const { players } = props;
-  const classes = useStyles();
+  const { players, isPC } = props;
+  const classes = useStyles(props);
 
 
   return (

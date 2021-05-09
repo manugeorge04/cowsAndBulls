@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
+import { useMediaQuery } from "@material-ui/core";
 
 import TeamOne from './TeamOne';
 import TeamTwo from './TeamTwo';
@@ -11,18 +12,17 @@ import BullfightPlayerList from './BullfightPlayerList';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: '22.5rem',
-    width: '50%',
+    width: props => props.isPC ? '50%' : '90%',
     margin: '2rem auto',
     boxShadow: '0px 0px 17px 1px #1D1F26',
     backgroundColor: '#fff',
     border: '0.1rem solid #000',
-    height: '50rem',
+    height: props => props.isPC ? '50rem' : '48rem',
     position: 'relative'
   },
   button: {
     fontSize: '2.4rem',
-    width: '15%',
+    width: props => props.isPC ? '15%' : '50%',
     backgroundColor: '#0b5394',
     boxShadow: '0px 0px 11px 1px #1D1F26',
     color: "#fff",
@@ -55,8 +55,12 @@ const teamPlayers =
 ["Player 1","Player 2", "Player 3", "Player 4",
 "Player 5", "Player 6", "Player 7", "Player 8"]
 
-const EachModeContent = (mode) => {
-  const classes = useStyles();
+const EachModeContent = (mode, isPC) => {
+
+  const props = {
+    isPc: isPC
+  }
+  const classes = useStyles(props);
   const [players, setPlayers] = useState(teamPlayers);
   const [swappableFirstItem, setSwappableFirstItem] = useState("");
 
@@ -90,18 +94,20 @@ const EachModeContent = (mode) => {
     return (
       <CardContent className={classes.herds}>
         <div className={classes.teamDiv}>
-          <TeamOne teamA={players.slice(0,4)} swap={swap} firstSwap={setSwappableFirstItem}/>
-          <TeamTwo teamB={players.slice(4,8)} swap={swap} firstSwap={setSwappableFirstItem}/>
+          <TeamOne teamA={players.slice(0,4)} swap={swap}
+          firstSwap={setSwappableFirstItem} isPC={isPC}/>
+          <TeamTwo teamB={players.slice(4,8)} swap={swap}
+          firstSwap={setSwappableFirstItem} isPC={isPC}/>
         </div>
         <Button className={classes.button} onClick={randomize}
-        style={{width: '40%', boxShadow: 'none',
-        marginTop: '2rem'}}>Randomize Herds</Button>
+        style={{width: isPC ? '40%' : '80%', boxShadow: 'none',
+        marginTop: isPC ? '2rem' : '1rem'}}>Randomize Herds</Button>
       </CardContent>
     )
   } else if (mode === 'bullfight') {
     return (
       <CardContent>
-         <BullfightPlayerList players={players}/>
+         <BullfightPlayerList players={players} isPC={isPC}/>
       </CardContent>
     )
   }
@@ -109,12 +115,14 @@ const EachModeContent = (mode) => {
 
 const LobbyCard = (props) => {
   const { noOfPlayers, mode } = props;
-  const classes = useStyles(props);
+  const isPC = useMediaQuery("(min-width:768px)", {noSsr:true})  
+  const classes = useStyles({...props,isPC});
+  
 
   return (
     <Fragment>
       <Card className={classes.root}>
-        {EachModeContent(mode)}
+        {EachModeContent(mode, isPC)}
       </Card>
       <Button className={classes.button}>
         Start Game</Button>

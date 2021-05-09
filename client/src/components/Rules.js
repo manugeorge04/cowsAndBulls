@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
+
+import RulesModal from '../components/RulesModal'
 
 const useStyles = makeStyles({
   root: {
@@ -61,21 +63,35 @@ const CardHeaderWithStyle = withStyles((props) => ({
 const Rules = (props) => {
   const { isPC } = props;
   const classes = useStyles(props);
+  const [Open_BtnId, setOpen_BtnId] = useState({open:false, btnId:0})
+  const handleOnClose = () => {
+    return setOpen_BtnId({open:false})
+  }
  
   return (
-    <Card className={classes.root}>
-      <CardHeaderWithStyle
-        title={<Typography className={classes.title}>Butter read these first, check out our modes</Typography>}
-      />
-      <CardContent className={classes.content}>
-       <Button  className={classes.button}>
-         Herds</Button>
-       <Button className={classes.button}>
-         Bullfight</Button>
-       <Button className={classes.button}>
-         Cowputer</Button>
-      </CardContent>
-    </Card>
+    <Fragment>
+      <Card className={classes.root}>
+        <CardHeaderWithStyle
+          title={<Typography className={classes.title}>Butter read these first, check out our modes</Typography>}
+        />
+        <CardContent className={classes.content}>
+        <Button  
+          className={classes.button}
+          onClick={() => (setOpen_BtnId({open:true, btnId:1}))}
+        >
+          Herds</Button>
+        <Button className={classes.button}
+        onClick={() => (setOpen_BtnId({open:true, btnId:2}))}
+        >
+          Bullfight</Button>
+        <Button className={classes.button}
+        onClick={() => (setOpen_BtnId({open:true, btnId:3}))}
+        >
+          Cowputer</Button>
+        </CardContent>
+      </Card>
+      <RulesModal  Open_BtnId={Open_BtnId} handleOnClose={handleOnClose}/>
+    </Fragment>
   );
 }
 

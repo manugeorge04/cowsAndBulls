@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -102,6 +103,7 @@ const initialValues = {
 
 const CreateJoinGame = (props) => {
   const { type, isPC } = props;
+  const history = useHistory();
   const classes = useStyles(props);
   const [ errors, setErrors ] = useState({});
 
@@ -143,6 +145,7 @@ const CreateJoinGame = (props) => {
     e.preventDefault();
     if(validations()) {
       console.log("allow host")
+      history.push(`/${formValues.mode.toLowerCase()}/lobby`)
     }
   }
 

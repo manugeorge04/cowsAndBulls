@@ -15,14 +15,14 @@ const RulesModal = (props) => {
   const handleOnBackClick= () => { 
     setPrevBtnId(btnId)   
     setBtnId(btnId-1===0?3:btnId-1)
-    setDirection('left')
+    setDirection('right')
     toggleIncoming(!incoming)    
   }
 
   const handleOnForwardClick = () => {
     setPrevBtnId(btnId)
     setBtnId(btnId+1===4?1:btnId+1)
-    setDirection('right')
+    setDirection('left')
     toggleIncoming(!incoming)
   }
 

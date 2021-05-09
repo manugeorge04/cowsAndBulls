@@ -1,0 +1,15 @@
+.NotFoundPage {        
+    height: 77vh;
+    margin: $xl-size $xl-size;    
+    color: white;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+    align-items: center;    
+    @media(max-width: $desktop-breakpoint) {
+        padding-top: 20vh;
+        padding-bottom: 15vh;
+      }
+}
+
+

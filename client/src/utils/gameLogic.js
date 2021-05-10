@@ -2,16 +2,8 @@ import randomWords from 'random-words'
 
 export const hasRepeatingLetter = (word) => {
     const letters = word.split("")    
-    let checkArr = []    
-    letters.forEach((letter) => {
-        if (!checkArr.includes(letter)){
-            checkArr.push(letter)  
-        }                   
-    })
-    if (checkArr.length === letters.length)
-        return (false)
-    else    
-        return true         
+    const setLetters = [...new Set(letters)]    
+    return letters.length !== setLetters.length
 }
 
 export const generateWord = (wordLength = 4) => {      

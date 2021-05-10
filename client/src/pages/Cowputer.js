@@ -16,7 +16,6 @@ const Cowputer = () => {
   const [alert, setAlert] = useState({open:false})
   const [answerWord, setAnswerWord] = useState(generateWord())
   const [guesses,setGuesses] = useState([]) //slNo, word, bull, cow
-  
   const handleOnClose = () => {    
     setAlert({...alert, open:false});
   };

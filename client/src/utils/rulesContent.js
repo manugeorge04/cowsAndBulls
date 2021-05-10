@@ -71,19 +71,24 @@ export const ScoringRules = () => {
     <Typography variant="h4" align="center" paragraph={true}>
         Enter a word and you will be told how many COWS and BULLS lie in it. Words having repeated letters will be considered invalid.
         Eg: HOOF, EYES    
-    </Typography>        
-    <Typography variant="h4" align="center" paragraph={true} className={classes.wrapIcon} >
+    </Typography>     
+    <div className={classes.wrapIcon}>
       <embed  className={classes.Icon} src="images/cow.svg" />
-      COW is a correct letter
-      in the wrong position.
-      Eg: Ans- HIDE Guess- SKIN
-      I is a COW          
-    </Typography>
-    <Typography variant="h4" align="center"  className={classes.wrapIcon} >
-    <embed  className={classes.Icon} src="images/bull.svg" /> BULL is a correct letter
-      in the correct position.
-      Eg: Ans- CALF Guess- MILK
-      L is a BULL          
-    </Typography>      
+      <Typography variant="h4" align="center" paragraph={true}  >        
+        COW is a correct letter
+        in the wrong position.
+        Eg: Ans- HIDE Guess- SKIN
+        I is a COW          
+      </Typography>
+    </div>   
+    <div className={classes.wrapIcon}>
+      <embed  className={classes.Icon} src="images/bull.svg" /> 
+      <Typography variant="h4" align="center"   >      
+        BULL is a correct letter
+        in the correct position.
+        Eg: Ans- CALF Guess- MILK
+        L is a BULL          
+      </Typography>      
+    </div>
   </Fragment>
 )}

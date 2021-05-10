@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react'
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
+import {CowIcon, BullIcon} from '../assets/CustomIcons';
 
 const useStyles = makeStyles( (theme) => ({
   
@@ -73,7 +74,7 @@ export const ScoringRules = () => {
         Eg: HOOF, EYES    
     </Typography>     
     <div className={classes.wrapIcon}>
-      <embed  className={classes.Icon} src="images/cow.svg" />
+      <CowIcon  className={classes.Icon}/>
       <Typography variant="h4" align="center" paragraph={true}  >        
         COW is a correct letter
         in the wrong position.
@@ -82,7 +83,7 @@ export const ScoringRules = () => {
       </Typography>
     </div>   
     <div className={classes.wrapIcon}>
-      <embed  className={classes.Icon} src="images/bull.svg" /> 
+      <BullIcon className={classes.Icon} />
       <Typography variant="h4" align="center"   >      
         BULL is a correct letter
         in the correct position.

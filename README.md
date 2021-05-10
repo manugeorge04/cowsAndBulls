@@ -17,10 +17,10 @@
 
 ### `npm install`
 
-### `cd ./client && yarn install`
-
 ### `npm start`
 
 ### Open another terminal :
 
-### `cd ./client && yarn run dev-server`
+### `cd ./client && yarn install`
+
+### `yarn run dev-server`

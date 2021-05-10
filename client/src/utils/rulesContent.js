@@ -7,7 +7,7 @@ const useStyles = makeStyles( (theme) => ({
   
   wrapIcon: {
     verticalAlign: 'middle',
-    display: 'inline-flex'
+    display: 'flex',    
   },  
   Icon: {
     width: '10%',

@@ -5,25 +5,33 @@ const useStyles = makeStyles((theme) => ({
   textbox:{
     margin: theme.spacing(1),    
     width: '5.7rem',
+    height:'5rem' ,
     [theme.breakpoints.down('sm')]: {
-      width: '10rem',
-    },          
-    height:'5rem' ,   
+      width: '12rem',
+      height:'4rem' ,
+    },                
     textAlign: 'center',
     '& .MuiInputBase-input':{
-      fontSize: '2rem', 
-      paddingLeft: '1.5rem' ,
-      [theme.breakpoints.up('sm')]: {        
-        fontSize: '3rem', 
+      fontSize: '3rem',     
+      paddingLeft: '1.5rem', 
+      [theme.breakpoints.down('sm')]: {        
+        fontSize: '1.5rem',         
       },          
     },
+    '& .MuiOutlinedInput-input':{
+      [theme.breakpoints.down('sm')]: {                
+        paddingLeft: '1rem',
+        paddingRight: '0.7rem',
+      },                
+    },
     '& .MuiInputBase-root':{
-      height:'5rem'      
+      height:'5rem',      
+      [theme.breakpoints.down('sm')]: {        
+        height:'4rem',              
+      },          
     }     
     },
 }))
-
-
 
 const InputTextBoxes = forwardRef(({handleOnChange, variant, guessWord, handleOnKeyDown, id, disabled}, ref) => {
 

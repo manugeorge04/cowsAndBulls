@@ -32,6 +32,18 @@ const GameHeaderCheer = () => {
   )
 }
 
+const GameHeaderCheerMobile = () => {
+  const classes = useStyles()
+
+  return(
+    <div className="gameHeader__cheer__mobile">
+      <Typography className={classes.cheer} variant="h5" align="center">
+        
+      </Typography>      
+    </div>
+  )
+}
+
 const GameHeader = () => {
 
   const classes = useStyles()
@@ -65,9 +77,9 @@ const GameHeader = () => {
   const isPC = useMediaQuery("(min-width:45rem)", {noSsr:true})
   
   return(
-    <Fragment>      
+    <Fragment>          
     <div className="gameHeader">      
-      {isPC && <GameHeaderCheer />}
+      {isPC ?<GameHeaderCheer/> : <GameHeaderCheerMobile/> }
     <div className="gameHeader__guess">          
       <InputTextBoxes    
         id = "gameHeader"     

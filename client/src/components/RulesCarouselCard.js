@@ -30,10 +30,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow:'2',
     padding:'2rem 0 2rem'
   },
-  wrapIcon: {
-    verticalAlign: 'middle',
-    display: 'inline-flex'
-  },
   closeButton: {
     position:'absolute',
     top:"1%",

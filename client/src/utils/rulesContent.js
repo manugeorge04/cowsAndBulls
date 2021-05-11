@@ -66,75 +66,75 @@ export const Herds = () => {return(
   </Fragment>    
 )}
 
-// export const ScoringRules = () => {
-  
-//   const classes= useStyles()
-
-//   return(
-//   <Fragment>
-//     <Typography variant="h4" align="center" paragraph={true}>
-//         Enter a word and you will be told how many COWS and BULLS lie in it. Words having repeated letters will be considered invalid.
-//         Eg: HOOF, EYES    
-//     </Typography>     
-//     <div className={classes.wrapIcon}>
-//       <CowIcon  className={classes.Icon}/>
-//       <Typography variant="h4" align="center" paragraph={true}  >        
-//         COW is a correct letter
-//         in the wrong position.
-//         Eg: Ans- HIDE Guess- SKIN
-//         I is a COW          
-//       </Typography>
-//     </div>   
-//     <div className={classes.wrapIcon}>
-//       <BullIcon className={classes.Icon} />
-//       <Typography variant="h4" align="center"   >      
-//         BULL is a correct letter
-//         in the correct position.
-//         Eg: Ans- CALF Guess- MILK
-//         L is a BULL          
-//       </Typography>      
-//     </div>
-//   </Fragment>
-// )}
-
 export const ScoringRules = () => {
   
   const classes= useStyles()
 
   return(
-    <Fragment>
-      <Typography variant="h4" align="center" paragraph={true}>
-          Enter a word and you will be told how many COWS and BULLS lie in it. Words having repeated letters will be considered invalid.
-          Eg: HOOF, EYES    
-      </Typography>     
-      <Grid 
-        container
-        direction="row"
-        justify="center"
-        alignItems="center" 
-      spacing={3}>
-          <Grid item >
-            <div className={classes.wrapIcon}>
-              <CowIcon  className={classes.Icon}/>
-              <Typography variant="h4" align="center" paragraph={true}  >        
-                COW is a correct letter
-                in the wrong position.
-                Eg: Ans- HIDE Guess- SKIN
-                I is a COW          
-              </Typography>
-            </div>   
-          </Grid>
-          <Grid item >
-            <div className={classes.wrapIcon}>
-              <BullIcon className={classes.Icon} />
-              <Typography variant="h4" align="center"   >      
-                BULL is a correct letter
-                in the correct position.
-                Eg: Ans- CALF Guess- MILK
-                L is a BULL          
-              </Typography>      
-            </div>
-          </Grid>
-      </Grid>
-    </Fragment>
+  <Fragment>
+    <Typography variant="h4" align="center" paragraph={true}>
+        Enter a word and you will be told how many COWS and BULLS lie in it. Words having repeated letters will be considered invalid.
+        Eg: HOOF, EYES    
+    </Typography>     
+    <div className={classes.wrapIcon}>
+      <CowIcon  className={classes.Icon}/>
+      <Typography variant="h4" align="center" paragraph={true}  >        
+        COW is a correct letter
+        in the wrong position.
+        Eg: Ans- HIDE Guess- SKIN
+        I is a COW          
+      </Typography>
+    </div>   
+    <div className={classes.wrapIcon}>
+      <BullIcon className={classes.Icon} />
+      <Typography variant="h4" align="center"   >      
+        BULL is a correct letter
+        in the correct position.
+        Eg: Ans- CALF Guess- MILK
+        L is a BULL          
+      </Typography>      
+    </div>
+  </Fragment>
 )}
+
+// export const ScoringRules = () => {
+  
+//   const classes= useStyles()
+
+//   return(
+//     <Fragment>
+//       <Typography variant="h4" align="center" paragraph={true}>
+//           Enter a word and you will be told how many COWS and BULLS lie in it. Words having repeated letters will be considered invalid.
+//           Eg: HOOF, EYES    
+//       </Typography>     
+//       <Grid 
+//         container
+//         direction="row"
+//         justify="center"
+//         alignItems="center" 
+//       spacing={3}>
+//           <Grid item >
+//             <div className={classes.wrapIcon}>
+//               <CowIcon  className={classes.Icon}/>
+//               <Typography variant="h4" align="center" paragraph={true}  >        
+//                 COW is a correct letter
+//                 in the wrong position.
+//                 Eg: Ans- HIDE Guess- SKIN
+//                 I is a COW          
+//               </Typography>
+//             </div>   
+//           </Grid>
+//           <Grid item >
+//             <div className={classes.wrapIcon}>
+//               <BullIcon className={classes.Icon} />
+//               <Typography variant="h4" align="center"   >      
+//                 BULL is a correct letter
+//                 in the correct position.
+//                 Eg: Ans- CALF Guess- MILK
+//                 L is a BULL          
+//               </Typography>      
+//             </div>
+//           </Grid>
+//       </Grid>
+//     </Fragment>
+// )}

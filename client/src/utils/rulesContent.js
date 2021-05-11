@@ -12,10 +12,12 @@ const useStyles = makeStyles( (theme) => ({
   },  
   Icon: {
     width: '10%',
+    height: '10%',
     [theme.breakpoints.down('sm')]: {
       width: "15%",            
+      height: '15%',
     },
-    height: 'auto'
+    //height: 'auto'
   },
 
 }))

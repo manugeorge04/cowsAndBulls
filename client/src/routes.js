@@ -1,6 +1,5 @@
 import React, { Fragment, Suspense, useContext, useEffect } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import MyContext from './context/MyContext';
 import FallbackCircularProgress from './components/FallbackCircularProgress'
 

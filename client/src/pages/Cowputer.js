@@ -33,31 +33,13 @@ const Cowputer = (props) => {
           bull,
           cow
       }
-      console.log("guesses in useEffect", guesses)
-      const guessestest = guesses.concat([newItem]);
-      console.log(guessestest);
       setGuesses(guesses.concat([newItem]));
-      // setGuesses([
-      //   ...guesses,
-      //   {
-      //     slNo: guesses.length + 1,
-      //     word: {
-      //       letter1 : guess[0],
-      //       letter2 : guess[1],
-      //       letter3 : guess[2],
-      //       letter4 : guess[3],
-      //     },
-      //     bull,
-      //     cow
-      //   }
-      // ])
+  
       console.log("cow and bull S1 useEffect",cow,bull)
-      // update = true
+
     });
 
-    // return () => {
-    //   socket.disconnect();
-    // }
+
   }, [subHeader, guesses]);
 
   console.log("guesses", guesses)
@@ -96,7 +78,6 @@ const Cowputer = (props) => {
         //   }
         // ])
         socket.emit("newGuess", word.toLowerCase(), props.match.params.roomId);
-        console.log("else")
       }
     }
   }

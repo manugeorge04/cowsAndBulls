@@ -11,7 +11,11 @@ const useStyles = makeStyles((theme) => ({
 
 const UserGuess = ({slNo, handleOnKeyDown,disabled , word, bull, cow }) => {
 
-  const [guessWord, setGuessWord] = useState(word)
+  const [guessWord, setGuessWord] = useState("");
+
+  useEffect(() => {
+    setGuessWord(word)
+  }, [word])
   
   const guessRef = useRef(null)
     
@@ -35,7 +39,7 @@ const UserGuess = ({slNo, handleOnKeyDown,disabled , word, bull, cow }) => {
     guessRef.current.scrollToEnd()
   },[])
 
-  const classes = useStyles()
+  const classes = useStyles();
 
   return(
     <div className = "gameBody">

@@ -1,10 +1,9 @@
 const { getAnswerWord } = require("../serverStorage/globalStorage")
 
 const newGuess = (socket) => {
-    let cowScore = 0
-    let bullScore = 0
     socket.on('newGuess', (guess, roomId) => {
-        console.log("newGuess")
+        let cowScore = 0
+        let bullScore = 0
         const answer = getAnswerWord(roomId)
         console.log("answer",answer)
         if (answer === guess){
@@ -15,7 +14,7 @@ const newGuess = (socket) => {
                 guess
             })
         }else {   
-            console.log("else")
+
             answer.split("").forEach((letter, index) => {
                 if(letter === guess[index]){
                     bullScore = bullScore + 1
@@ -23,10 +22,10 @@ const newGuess = (socket) => {
                     cowScore = cowScore + 1
                 }
             });        
-            console.log("else",bullScore,cowScore)
+
             socket.emit('cowsAndBullsScore',{bullScore, cowScore, guess})            
         }
     })
 }
 
-module.exports = newGuess
+module.exports = newGuess;

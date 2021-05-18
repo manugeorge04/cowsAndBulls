@@ -48,7 +48,7 @@ const InputTextBoxes = forwardRef(({handleOnChange, variant, guessWord, handleOn
     scrollToEnd : () => letter4Ref.current.scrollIntoView({ behavior: 'smooth' }),
   }))
 
-  const classes= useStyles()
+  const classes= useStyles();
 
   return(
     <Fragment>    
@@ -89,4 +89,4 @@ const InputTextBoxes = forwardRef(({handleOnChange, variant, guessWord, handleOn
   )    
 })
 
-export default InputTextBoxes
+export default InputTextBoxes;

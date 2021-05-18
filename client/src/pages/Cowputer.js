@@ -12,6 +12,7 @@ const Cowputer = (props) => {
 
   const [alert, setAlert] = useState({open:false})  
   const [guesses,setGuesses] = useState([]) //slNo, word, bull, cow
+  const [guessWord, setGuessWord] = useState({})
   const handleOnClose = () => {    
     setAlert({...alert, open:false});
   };
@@ -20,8 +21,8 @@ const Cowputer = (props) => {
 
     setSubHeader("Playing Cowputer");
     socket.on('cowsAndBullsScore', ({cowScore, bullScore, guess}) =>{
-      let cow = cowScore;
-      let bull = bullScore;
+      const cow = cowScore;
+      const bull = bullScore;
       const newItem = {
         slNo: guesses.length + 1,
           word: {
@@ -34,15 +35,10 @@ const Cowputer = (props) => {
           cow
       }
       setGuesses(guesses.concat([newItem]));
-  
-      console.log("cow and bull S1 useEffect",cow,bull)
-
     });
 
+  }, [subHeader, guessWord]);
 
-  }, [subHeader, guesses]);
-
-  console.log("guesses", guesses)
   const handleOnKeyDown = (guessWord) => (e) => {
     if (e.key === "Enter"){
       let word = [guessWord.letter1, guessWord.letter2, guessWord.letter3, guessWord.letter4].join("")
@@ -62,21 +58,7 @@ const Cowputer = (props) => {
           severity: "error"
         })        
       }else{
-        // let {bull, cow} = getCowsAndBulls(word, props.match.params.roomId, socket)
-        // setGuesses([
-        //   ...guesses,
-        //   {
-        //     slNo: guesses.length + 1,
-        //     word: {
-        //       letter1 : guessWord.letter1,
-        //       letter2 : guessWord.letter2,
-        //       letter3 : guessWord.letter3,
-        //       letter4 : guessWord.letter4,
-        //     },
-        //     bull: bull,
-        //     cow: cow
-        //   }
-        // ])
+        setGuessWord(guessWord)
         socket.emit("newGuess", word.toLowerCase(), props.match.params.roomId);
       }
     }
@@ -92,9 +74,9 @@ const Cowputer = (props) => {
   return (
     <div className="container">
       <GameHeader />  
-      {guesses.map((guess) =>                 
+      {guesses.map((guess, index) =>                 
         <UserGuess
-          key= {guess.slNo}
+          key= {index}
           slNo = {guess.slNo}          
           word = {guess.word}
           bull = {guess.bull}

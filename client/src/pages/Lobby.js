@@ -11,13 +11,15 @@ const Lobby = (props) =>{
     setSubHeader(`Playing ${props.match.params.mode}`);
   }, [subHeader]);
 
-  useEffect(() => console.log(users), [users])
+  // useEffect(() => {
+
+  // }, [users])
 
 
   return (
     <div>
       <RoundUpRoom data={'Round Up Room'}/>
-      <LobbyCard noOfPlayers={1} mode={props.match.params.mode}/>
+      <LobbyCard players={users} mode={props.match.params.mode}/>
     </div>
   );
 }

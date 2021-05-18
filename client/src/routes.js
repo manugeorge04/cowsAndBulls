@@ -6,6 +6,7 @@ import FallbackCircularProgress from './components/FallbackCircularProgress'
 
 const Home = React.lazy(() => import('./pages/Home'));
 const Join = React.lazy(() => import('./pages/Join')); 
+const Lobby = React.lazy(() =>import('./pages/Lobby'));
 const NotFound = React.lazy(() => import('./pages/NotFound'));
 const Header = React.lazy(() =>import('./hoc/Header'));
 const Footer = React.lazy(() =>import('./hoc/Footer'));
@@ -19,7 +20,12 @@ const Routes = () => {
         <HashRouter>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/join" component={Join} />            
+
+            <Route path="/join" component={Join} />
+            <Route exact path="/:mode/lobby" component={Lobby} />
+
+           
+
             <Route status={404} exact component={NotFound}/>
           </Switch>
         </HashRouter>

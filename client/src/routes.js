@@ -21,7 +21,7 @@ const Routes = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/join" component={Join} />            
-            <Route path="/cowputer" component={Cowputer} />                        
+            <Route path="/cowputer/:roomId" exact component={Cowputer} />                        
             <Route exact path="/:mode/lobby/:roomId" component={Lobby} />         
             <Route status={404} exact component={NotFound}/>
           </Switch>

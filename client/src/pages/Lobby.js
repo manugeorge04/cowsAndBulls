@@ -17,7 +17,7 @@ const Lobby = (props) =>{
   return (
     <div>
       <RoundUpRoom data={'Round Up Room'}/>
-      <LobbyCard noOfPlayers={1} mode={props.match.params.mode}/>
+      <LobbyCard noOfPlayers={1} mode={props.match.params.mode} roomId={props.match.params.roomId}/>
     </div>
   );
 }

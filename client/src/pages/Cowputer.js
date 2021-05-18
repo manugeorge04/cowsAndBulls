@@ -3,18 +3,17 @@ import Alert from '../components/Alert';
 import GameHeader from '../components/GameHeader';
 import UserGuess from '../components/UserGuess';
 import MyContext from '../context/MyContext';
-import {hasRepeatingLetter, generateWord, getCowsAndBulls, isValidWord} from '../utils/gameLogic'
+import {hasRepeatingLetter, getCowsAndBulls} from '../utils/gameLogic'
 
 
-const Cowputer = () => {
+const Cowputer = (props) => {
 
-  const {subHeader, setSubHeader} = useContext(MyContext)
+  const {subHeader, setSubHeader, socket} = useContext(MyContext)
   useEffect(() => {
     setSubHeader("Playing Cowputer");
   }, [subHeader]);
 
-  const [alert, setAlert] = useState({open:false})
-  const [answerWord, setAnswerWord] = useState(generateWord())
+  const [alert, setAlert] = useState({open:false})  
   const [guesses,setGuesses] = useState([]) //slNo, word, bull, cow
   const handleOnClose = () => {    
     setAlert({...alert, open:false});
@@ -39,7 +38,7 @@ const Cowputer = () => {
           severity: "error"
         })        
       }else{
-        let {bull, cow} = getCowsAndBulls(answerWord, word)
+        let {bull, cow} = getCowsAndBulls(word, props.match.params.roomId, socket)
         setGuesses([
           ...guesses,
           {

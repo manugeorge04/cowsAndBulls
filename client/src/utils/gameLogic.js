@@ -1,4 +1,5 @@
-import randomWords from 'random-words'
+import { useContext } from "react"
+import MyContext from "../context/MyContext"
 
 export const hasRepeatingLetter = (word) => {
     const letters = word.split("")    
@@ -6,36 +7,23 @@ export const hasRepeatingLetter = (word) => {
     return letters.length !== setLetters.length
 }
 
-export const generateWord = (wordLength = 4) => {      
-    let word =""
-    do {
-        word = randomWords({exactly: 1, maxLength: wordLength})[0]
-      }
-    while (word.length !== wordLength || hasRepeatingLetter(word))    
-    return(word)  
-}
-
 //bull - same location; cow - letter is present
-export const getCowsAndBulls = (answer, guess) => {
+export const getCowsAndBulls = (guess, roomId, socket) => {    
     guess = guess.toLowerCase()
-    let cow = 0
-    let bull = 0
-    if (answer === guess){
-        return ({
-            bull:answer.length,
-            cow:0
-        })
-    }else {   
-        answer.split("").forEach((letter, index) => {
-            if(letter === guess[index]){
-                bull = bull + 1
-            }else if(guess.split("").includes(letter)){
-                cow = cow + 1
-            }
-        });        
-        return ({
-            bull,
-            cow
-        })
-    }
+    let cow = -1
+    let bull = -1
+    let update = false
+
+    socket.on('cowsAndBullsScore', ({cowScore, bullScore}) =>{
+        cow = cowScore;
+        bull = bullScore;
+        console.log("cow and bull S1 =>",cow,bull)
+        update = true
+    });
+    socket.emit("newGuess", guess, roomId);
+
+    console.log("cow and bull =>",cow,bull)
+    
+    if (update)
+        return({cow, bull})     
 }

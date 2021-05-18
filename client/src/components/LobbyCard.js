@@ -1,15 +1,16 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 import { useMediaQuery } from "@material-ui/core";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import TeamOne from './TeamOne';
 import TeamTwo from './TeamTwo';
 import BullfightPlayerList from './BullfightPlayerList';
+import MyContext from '../context/MyContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -132,8 +133,19 @@ const EachModeContent = (mode, isPC, teamPlayers) => {
   }
 }
 
+const handleStartGame = (mode, roomId, socket) => {
+  if (mode === "cowputer"){
+    
+    socket.emit('createWord', roomId)
+  }else {
+    return
+  }
+  
+}
+
 const LobbyCard = (props) => {
-  const { players, mode } = props;
+  const {socket} = useContext(MyContext)
+  const { players, mode, roomId } = props;
   const isPC = useMediaQuery("(min-width:768px)", {noSsr:true})  
   const classes = useStyles({...props,isPC});
 
@@ -145,7 +157,9 @@ const LobbyCard = (props) => {
       <div className={classes.buttonDiv}>
       <Button className={classes.button}>
         Leave Lobby</Button>
-      <Button className={classes.button}>
+      <Button className={classes.button}
+       component={Link} to={`/${mode}/${roomId}`} 
+       onClick = {() => handleStartGame(mode, roomId, socket)}   >
         Start Game</Button>
       </div>
     </Fragment>

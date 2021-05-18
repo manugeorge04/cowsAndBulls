@@ -21,18 +21,15 @@ const useStyles = makeStyles((theme) => ({
     top: '10%',
     left: '25%',
     [theme.breakpoints.down('sm')]: {
-      width: "100%",      
-      top: '10%',
+      width: "100%",  
+      height:'88%',    
+      top: '6%',
       left: '0%'
     },
   },
   content: {
     flexGrow:'2',
     padding:'2rem 0 2rem'
-  },
-  wrapIcon: {
-    verticalAlign: 'middle',
-    display: 'inline-flex'
   },
   closeButton: {
     position:'absolute',

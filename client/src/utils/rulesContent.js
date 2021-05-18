@@ -1,19 +1,21 @@
 import React, {Fragment} from 'react'
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
+import {CowIcon, BullIcon} from '../assets/CustomIcons';
 
 const useStyles = makeStyles( (theme) => ({
   
   wrapIcon: {
     verticalAlign: 'middle',
-    display: 'inline-flex'
+    display: 'flex',    
   },  
   Icon: {
     width: '10%',
+    height: '10%',
     [theme.breakpoints.down('sm')]: {
       width: "15%",            
-    },
-    height: 'auto'
+      height: '15%',
+    },    
   },
 
 }))
@@ -71,19 +73,24 @@ export const ScoringRules = () => {
     <Typography variant="h4" align="center" paragraph={true}>
         Enter a word and you will be told how many COWS and BULLS lie in it. Words having repeated letters will be considered invalid.
         Eg: HOOF, EYES    
-    </Typography>        
-    <Typography variant="h4" align="center" paragraph={true} className={classes.wrapIcon} >
-      <embed  className={classes.Icon} src="images/cow.svg" />
-      COW is a correct letter
-      in the wrong position.
-      Eg: Ans- HIDE Guess- SKIN
-      I is a COW          
-    </Typography>
-    <Typography variant="h4" align="center"  className={classes.wrapIcon} >
-    <embed  className={classes.Icon} src="images/bull.svg" /> BULL is a correct letter
-      in the correct position.
-      Eg: Ans- CALF Guess- MILK
-      L is a BULL          
-    </Typography>      
+    </Typography>     
+    <div className={classes.wrapIcon}>
+      <CowIcon  className={classes.Icon}/>
+      <Typography variant="h4" align="center" paragraph={true}  >        
+        COW is a correct letter
+        in the wrong position.
+        Eg: Ans- HIDE Guess- SKIN
+        I is a COW          
+      </Typography>
+    </div>   
+    <div className={classes.wrapIcon}>
+      <BullIcon className={classes.Icon} />
+      <Typography variant="h4" align="center"   >      
+        BULL is a correct letter
+        in the correct position.
+        Eg: Ans- CALF Guess- MILK
+        L is a BULL          
+      </Typography>      
+    </div>
   </Fragment>
 )}

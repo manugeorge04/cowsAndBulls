@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& .MuiSvgIcon-root': {
       width: '2rem',
-      height: '2rem'
+      height: 'auto'
     },
     '& .MuiIconButton-label': {
       width: '5rem'

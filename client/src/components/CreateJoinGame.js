@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -15,11 +17,11 @@ import MyContext from '../context/MyContext';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: '22.5rem',
+    // minWidth: '22.5rem',
     boxShadow: '0px 0px 17px 1px #1D1F26',
     backgroundColor: '#fff',
     border: '0.1rem solid #000',
-    height: props => props.type === 'join' && !props.isPC ? '38rem' : '50rem',
+    height: props => props.type === 'join' && !props.isPC ? '38rem' : '46rem',
     '& .MuiTextField-root': {
       width: '100%',
       fontSize: '2rem',
@@ -73,7 +75,7 @@ const useStyles = makeStyles({
     fontWeight: 500,
     width: props => props.isPC ? '80%' : '100%',
     paddingBottom: '1.6rem',
-    height: '8rem' 
+    height: 'auto' 
   },
 });
 
@@ -83,14 +85,14 @@ const CardHeaderWithStyle = withStyles((props) => ({
     fontWeight: 500,
     // width: props => props.isPC ? '80%' : '100%',
     paddingBottom: '1.6rem',
-    height: '8rem' 
+    height: 'auto' 
   },
   content: {
     borderBottom: '0.1rem solid #000'
   },
   root: {
     padding: '1.2rem 0',
-    height: '10rem'
+    height: 'auto'
   }
 }))(CardHeader);
 
@@ -103,6 +105,7 @@ const initialValues = {
 
 const CreateJoinGame = (props) => {
   const { type, isPC } = props;
+  const history = useHistory();
   const classes = useStyles(props);
   const [ errors, setErrors ] = useState({});
   const {socket} = useContext(MyContext);
@@ -157,7 +160,8 @@ const CreateJoinGame = (props) => {
         const userName = formValues.name
         const roomId = formValues.roomId.toUpperCase()
         socket.emit('join', {userName, roomId})
-      }      
+      }            
+      history.push(`/${formValues.mode.toLowerCase()}/lobby`)
     }
   }
 

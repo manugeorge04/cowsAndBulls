@@ -8,12 +8,15 @@ const MyProvider = (props) => {
     
     const [subHeader, setSubHeader] = useState("Hello")
     const [socket, setSocket] = useState(socketio)   
+    const [users, setUsers] = useState([])
+    socket.on('newUser', (userList) => setUsers(userList))
 
     return (
         <MyContext.Provider
             value={{
                 subHeader, setSubHeader,
-                socket, setSocket,
+                socket,
+                users
             }}
         >
             {props.children}    { //you can use props.children on components that represent ‘generic boxes’ 

@@ -19,12 +19,8 @@ const Routes = () => {
         <HashRouter>
           <Switch>
             <Route path="/" exact component={Home} />
-
             <Route path="/join" component={Join} />
-            <Route exact path="/:mode/lobby" component={Lobby} />
-
-           
-
+            <Route exact path="/:mode/lobby/:roomId" component={Lobby} />         
             <Route status={404} exact component={NotFound}/>
           </Switch>
         </HashRouter>

@@ -17,6 +17,8 @@ const { Server } = require("socket.io")
 const io = new Server(server);
 const rootSocket = require('./src/socket/rootSocket')(io);
 
+global.gameStorage =  {};
+
 const publicPath = path.join(__dirname,'client','public');
 app.use(express.static(publicPath));
 

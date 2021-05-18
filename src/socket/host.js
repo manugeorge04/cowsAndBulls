@@ -1,16 +1,23 @@
 const randomstring = require("randomstring");
-const roomId = randomstring.generate({
-    length: 6,
-    charset: 'alphabetic'
-  }).toUpperCase();
+const { initRoom, getUsersFromRoom, roomIdIsNotUnique } = require("../serverStorage/globalStorage");
 
-const host  = (socket) => (
+const host  = (socket,io) => {
+    let roomId = ""
+    do {
+        roomId = randomstring.generate({
+        length: 6,
+        charset: 'alphabetic'
+      }).toUpperCase();
+    }while (roomIdIsNotUnique(roomId))    
+
     socket.on('host', ({userName, mode, rounds}) => {
        console.log(userName, mode, rounds, roomId) 
-       socket.join(roomId)
-       socket.broadcast.to(roomId).emit('message',`${userName} created a room`)
-       socket.broadcast.to(roomId).emit('message',`${userName} joined`)
+       initRoom(roomId, rounds, mode, userName)
+       socket.emit('newRoom', roomId)
+       socket.join(roomId)    
+       const usersList = getUsersFromRoom(roomId)   
+       io.to(roomId).emit('newUser',usersList)
     })
-)
+}
 
 module.exports = host;

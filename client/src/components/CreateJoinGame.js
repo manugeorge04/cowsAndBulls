@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -155,13 +154,20 @@ const CreateJoinGame = (props) => {
       if (type==='create'){
         const {mode,rounds} = formValues
         const userName = formValues.name
+        socket.on('newRoom', (roomId) => {
+          history.push(`/${formValues.mode.toLowerCase()}/lobby/${roomId}`)
+        })  //intialize the on before emit to prevent any error due to set-up latency
         socket.emit('host', {userName, mode, rounds})
+        
       }else{  //type === join        
         const userName = formValues.name
         const roomId = formValues.roomId.toUpperCase()
         socket.emit('join', {userName, roomId})
+        socket.on('joinRoom', (mode) => {
+          history.push(`/${mode.toLowerCase()}/lobby/${roomId}`)
+        })        
       }            
-      history.push(`/${formValues.mode.toLowerCase()}/lobby`)
+      
     }
   }
 

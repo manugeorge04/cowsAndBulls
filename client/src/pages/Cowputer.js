@@ -39,9 +39,7 @@ const Cowputer = (props) => {
   const handleOnKeyDown = (guessWord) => (e) => {
     if (e.key === "Enter"){
       let word = [guessWord.letter1, guessWord.letter2, guessWord.letter3, guessWord.letter4].join("")
-      console.log(word)
-      console.log([guessWord.letter1, guessWord.letter2, guessWord.letter3, guessWord.letter4].join("").length)
-      console.log(word.includes(" ") , (word.length < 4), word.length)
+      console.log(word)      
       if (word.includes(" ") || (word.length<4)){        
         setAlert({
           open:true,

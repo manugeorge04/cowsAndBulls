@@ -19,6 +19,23 @@ const Cowputer = (props) => {
     setAlert({...alert, open:false});
   };
 
+  const updateGuesses = (guessWord,cow, bull) => {
+    setGuesses([
+      ...guesses,
+      {
+        slNo: guesses.length + 1,
+        word: {
+          letter1 : guessWord.letter1,
+          letter2 : guessWord.letter2,
+          letter3 : guessWord.letter3,
+          letter4 : guessWord.letter4,
+        },
+        bull: bull,
+        cow: cow
+      }
+    ])
+  }
+
   const handleOnKeyDown = (guessWord) => (e) => {
     if (e.key === "Enter"){
       let word = [guessWord.letter1, guessWord.letter2, guessWord.letter3, guessWord.letter4].join("")
@@ -38,21 +55,7 @@ const Cowputer = (props) => {
           severity: "error"
         })        
       }else{
-        let {bull, cow} = getCowsAndBulls(word, props.match.params.roomId, socket)
-        setGuesses([
-          ...guesses,
-          {
-            slNo: guesses.length + 1,
-            word: {
-              letter1 : guessWord.letter1,
-              letter2 : guessWord.letter2,
-              letter3 : guessWord.letter3,
-              letter4 : guessWord.letter4,
-            },
-            bull: bull,
-            cow: cow
-          }
-        ])
+        getCowsAndBulls(word, props.match.params.roomId, socket, updateGuesses, guessWord)                
       }
     }
   }

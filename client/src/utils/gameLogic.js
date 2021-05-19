@@ -8,22 +8,19 @@ export const hasRepeatingLetter = (word) => {
 }
 
 //bull - same location; cow - letter is present
-export const getCowsAndBulls = (guess, roomId, socket) => {    
+export const getCowsAndBulls = (guess, roomId, socket, updateGuesses, guessWord) => {    
     guess = guess.toLowerCase()
     let cow = -1
-    let bull = -1
-    let update = false
+    let bull = -1    
 
-    socket.on('cowsAndBullsScore', ({cowScore, bullScore}) =>{
+    socket.once('cowsAndBullsScore', ({cowScore, bullScore}) =>{
         cow = cowScore;
         bull = bullScore;
-        console.log("cow and bull S1 =>",cow,bull)
-        update = true
+        updateGuesses(guessWord, cow, bull)     
+        console.log("cow and bull S1 =>",cow,bull)   
+        
     });
     socket.emit("newGuess", guess, roomId);
 
-    console.log("cow and bull =>",cow,bull)
-    
-    if (update)
-        return({cow, bull})     
+    console.log("cow and bull =>",cow,bull)    
 }

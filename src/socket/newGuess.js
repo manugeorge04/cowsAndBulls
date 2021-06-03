@@ -1,9 +1,10 @@
 const { getAnswerWord } = require("../serverStorage/globalStorage")
 
-const newGuess = (socket) => {
+const newGuess = (socket) => {    
     socket.on('newGuess', (guess, roomId) => {
         let cowScore = 0
         let bullScore = 0
+        console.log("newGuess")
         const answer = getAnswerWord(roomId)
         console.log("answer",answer)
         if (answer === guess){

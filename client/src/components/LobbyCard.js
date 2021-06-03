@@ -133,21 +133,24 @@ const EachModeContent = (mode, isPC, teamPlayers) => {
   }
 }
 
-const handleStartGame = (mode, roomId, socket) => {
-  if (mode === "cowputer"){
-    
-    socket.emit('createWord', roomId)
-  }else {
-    return
-  }
-  
-}
-
 const LobbyCard = (props) => {
-  const {socket} = useContext(MyContext)
+  const {socket, currentGame, setCurrentGame} = useContext(MyContext)
   const { players, mode, roomId } = props;
   const isPC = useMediaQuery("(min-width:768px)", {noSsr:true})  
   const classes = useStyles({...props,isPC});
+
+  const handleStartGame = (mode, roomId, socket) => {
+    if (mode === "cowputer"){
+      setCurrentGame({
+        ...currentGame,
+        currentRound: 1
+      })
+      socket.emit('createWord', roomId)
+    }else {
+      return
+    }
+    
+  }
 
   return (
     <Fragment>
@@ -155,7 +158,9 @@ const LobbyCard = (props) => {
         {EachModeContent(mode, isPC, players)}
       </Card>
       <div className={classes.buttonDiv}>
-      <Button className={classes.button}>
+      <Button className={classes.button}
+       component={Link} to={`/`} >
+         {/* delete room in this  */}
         Leave Lobby</Button>
       <Button className={classes.button}
        component={Link} to={`/${mode}/${roomId}`} 

@@ -8,43 +8,102 @@ import {hasRepeatingLetter, getCowsAndBulls} from '../utils/gameLogic'
 
 const Cowputer = (props) => {
 
-  const {subHeader, setSubHeader, socket} = useContext(MyContext)
+  const {subHeader, setSubHeader, socket, setCurrentGame, currentGame} = useContext(MyContext)
 
   const [alert, setAlert] = useState({open:false})  
   const [guesses,setGuesses] = useState([]) //slNo, word, bull, cow
-  const [guessWord, setGuessWord] = useState({})
+
   const handleOnClose = () => {    
     setAlert({...alert, open:false});
   };
 
   useEffect(() => {
+    socket.emit('createWord', currentGame.roomId)
+    setSubHeader(`Playing ${currentGame.mode} (${currentGame.currentRound}/${currentGame.rounds})`);
+  }, [currentGame.currentRound])
 
-    setSubHeader("Playing Cowputer");
-    socket.on('cowsAndBullsScore', ({cowScore, bullScore, guess}) =>{
-      const cow = cowScore;
-      const bull = bullScore;
-      const newItem = {
+  const updateGuesses = (guessWord,cowScore, bullScore) => {
+    setGuesses([
+      ...guesses,
+      {
         slNo: guesses.length + 1,
-          word: {
-            letter1 : guess[0],
-            letter2 : guess[1],
-            letter3 : guess[2],
-            letter4 : guess[3],
-          },
-          bull,
-          cow
+        word: {
+          letter1 : guessWord.letter1,
+          letter2 : guessWord.letter2,
+          letter3 : guessWord.letter3,
+          letter4 : guessWord.letter4,
+        },
+        bull: bullScore,
+        cow: cowScore
       }
-      setGuesses(guesses.concat([newItem]));
-    });
+    ])
+    
+    if(cowScore === 0 && bullScore === Object.keys(guessWord).length) {
+      if(currentGame.rounds == currentGame.currentRound) {
+          if(currentGame.winCount + 1 >= Math.ceil(currentGame.rounds/2)) {
+              handleResults("end", true)
+          } else {
+              handleResults("end", false)
+          }
+      } else {
+          setCurrentGame({
+              ...currentGame, 
+              currentRound: currentGame.currentRound + 1,
+              winCount: currentGame.winCount + 1,
+              noOfGuesses: 0,
+              maxGuesses: currentGame.maxGuesses - 2
+          })
+          handleResults("round", true)
+      }
+  } else if(currentGame.noOfGuesses + 1 === currentGame.maxGuesses) {
+      if(currentGame.rounds == currentGame.currentRound) {
+          if(currentGame.winCount + 1 >= Math.ceil(currentGame.rounds/2)) {
+              handleResults("end", true)
+          } else {
+              handleResults("end", false)
+          }
+      } else {
+          setCurrentGame({
+              ...currentGame, 
+              currentRound: currentGame.currentRound + 1,
+              noOfGuesses: 0,
+              maxGuesses: currentGame.maxGuesses + 2
+          })
+          handleResults("round", false)
+      }
+  } else {
+          setCurrentGame({
+              ...currentGame,
+              noOfGuesses: currentGame.noOfGuesses + 1
+            });   
+      
+  }
+  };
 
-  }, [subHeader, guessWord]);
+  const handleResults = (type, result) => {
+    setGuesses([]);
+    if(type === 'round') {
+
+      setAlert({
+        open:true,
+        message: result ? 'You won this round!' : 'You lost this round!',
+        severity: "info"
+      })    
+
+     } else if (type === 'end') {
+      setAlert({
+        open:true,
+        message: result ? 'You won!' : 'You lost!',
+        severity: result ? "success" : 'warning'
+      })  
+      // popup 
+
+    }
+  }
 
   const handleOnKeyDown = (guessWord) => (e) => {
     if (e.key === "Enter"){
-      let word = [guessWord.letter1, guessWord.letter2, guessWord.letter3, guessWord.letter4].join("")
-      console.log(word)
-      console.log([guessWord.letter1, guessWord.letter2, guessWord.letter3, guessWord.letter4].join("").length)
-      console.log(word.includes(" ") , (word.length < 4), word.length)
+      let word = [guessWord.letter1, guessWord.letter2, guessWord.letter3, guessWord.letter4].join("")    
       if (word.includes(" ") || (word.length<4)){        
         setAlert({
           open:true,
@@ -58,8 +117,8 @@ const Cowputer = (props) => {
           severity: "error"
         })        
       }else{
-        setGuessWord(guessWord)
-        socket.emit("newGuess", word.toLowerCase(), props.match.params.roomId);
+        getCowsAndBulls(word, props.match.params.roomId, socket, 
+          updateGuesses, guessWord)             
       }
     }
   }

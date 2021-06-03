@@ -9,6 +9,7 @@ const MyProvider = (props) => {
     const [subHeader, setSubHeader] = useState("Hello")
     const [socket, setSocket] = useState(socketio)   
     const [users, setUsers] = useState([])
+    const [currentGame, setCurrentGame] = useState({});
     socket.on('newUser', (userList) => setUsers(userList))
 
     return (
@@ -16,7 +17,8 @@ const MyProvider = (props) => {
             value={{
                 subHeader, setSubHeader,
                 socket,
-                users
+                users,
+                currentGame, setCurrentGame
             }}
         >
             {props.children}    { //you can use props.children on components that represent ‘generic boxes’ 

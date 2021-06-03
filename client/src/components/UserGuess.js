@@ -22,14 +22,14 @@ const UserGuess = ({slNo, handleOnKeyDown,disabled , word, bull, cow }) => {
   const onlyAlphabets = new RegExp(/[a-zA-Z]/);
   
   const handleOnChange = (e) => {
-    let letter = e.target.value.slice(-1).toUpperCase()    
+    let letter = e.target.value.slice(-1).toUpperCase()      
     if (letter === guessWord[e.target.id.slice(-7)]){
       letter = e.target.value[0].toUpperCase()
     }     
     if (onlyAlphabets.test(letter) || letter === "") {
       setGuessWord ({...guessWord, [e.target.id.slice(-7)]:letter})      
     }
-    if (letter !== ""){
+    if (onlyAlphabets.test(letter)){
       e.target.id.slice(-7) === "letter1" ? guessRef.current.focusBox2() : e.target.id.slice(-7) === "letter2" ? guessRef.current.focusBox3() : guessRef.current.focusBox4()
     }
   }  

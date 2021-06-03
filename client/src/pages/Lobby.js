@@ -5,8 +5,8 @@ import RoundUpRoom from '../components/RoundUpRoom';
 import LobbyCard from '../components/LobbyCard';
 
 const Lobby = (props) =>{
-  const { subHeader, setSubHeader, users } = useContext(MyContext); 
-
+  const { subHeader, setSubHeader, users,} = useContext(MyContext); 
+  
   useEffect(() => {
     setSubHeader(`Playing ${props.match.params.mode}`);
   }, [subHeader]);

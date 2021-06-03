@@ -107,7 +107,7 @@ const CreateJoinGame = (props) => {
   const history = useHistory();
   const classes = useStyles(props);
   const [ errors, setErrors ] = useState({});
-  const {socket} = useContext(MyContext);
+  const { socket, setCurrentGame } = useContext(MyContext);
 
   socket.on('message', (message) => {
     console.log(message)        
@@ -150,21 +150,33 @@ const CreateJoinGame = (props) => {
   const onsubmit = (e) => {
     e.preventDefault();
     if(validations()) {
-      console.log("allow host")      
+      console.log("allow host")  
       if (type==='create'){
         const {mode,rounds} = formValues
         const userName = formValues.name
         socket.on('newRoom', (roomId) => {
-          history.push(`/${formValues.mode.toLowerCase()}/lobby/${roomId}`)
+          setCurrentGame({
+            ...formValues,
+            roomId,
+            currentRound: 0,
+            winCount: 0,
+            maxGuesses: 3,
+            noOfGuesses: 0
+          });    
+          history.push({
+            pathname: `/${formValues.mode.toLowerCase()}/lobby/${roomId}`
+          })
         })  //intialize the on before emit to prevent any error due to set-up latency
         socket.emit('host', {userName, mode, rounds})
         
       }else{  //type === join        
-        const userName = formValues.name
+        const userName = formValues.name;
         const roomId = formValues.roomId.toUpperCase()
         socket.emit('join', {userName, roomId})
         socket.on('joinRoom', (mode) => {
-          history.push(`/${mode.toLowerCase()}/lobby/${roomId}`)
+          history.push({
+            pathname: `/${mode.toLowerCase()}/lobby/${roomId}`
+          })
         })        
       }            
       

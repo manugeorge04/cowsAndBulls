@@ -11,11 +11,7 @@ const useStyles = makeStyles((theme) => ({
 
 const UserGuess = ({slNo, handleOnKeyDown,disabled , word, bull, cow }) => {
 
-  const [guessWord, setGuessWord] = useState("");
-
-  useEffect(() => {
-    setGuessWord(word)
-  }, [word])
+  const [guessWord, setGuessWord] = useState(word);  
   
   const guessRef = useRef(null)
     

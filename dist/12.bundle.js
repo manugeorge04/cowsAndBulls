@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{212:function(e,t,a){"use strict";a.r(t);var n=a(0),c=a.n(n),u=a(168),r=a(174),o=a(16);t.default=function(){var e=Object(n.useContext)(o.a),t=e.subHeader,a=e.setSubHeader;return Object(n.useEffect)((function(){a("Home Page")}),[t]),c.a.createElement("div",null,c.a.createElement(u.a,null),c.a.createElement(r.a,{type:"create"}))}}}]);
+//# sourceMappingURL=12.bundle.js.map

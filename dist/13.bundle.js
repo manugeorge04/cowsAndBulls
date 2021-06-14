@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[13],{226:function(e,n,t){"use strict";t.r(n);var a=t(0),u=t.n(a),c=t(168),r=t(174),o=t(16);n.default=function(){var e=Object(a.useContext)(o.a),n=e.subHeader,t=e.setSubHeader;return Object(a.useEffect)((function(){t("Join Page")}),[n]),u.a.createElement("div",null,u.a.createElement(c.a,null),u.a.createElement(r.a,{type:"join"}))}}}]);
+//# sourceMappingURL=13.bundle.js.map

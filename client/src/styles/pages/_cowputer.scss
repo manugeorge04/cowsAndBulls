@@ -1,0 +1,40 @@
+.container{
+    display: flex;
+    width: 88%;  
+    margin:0 auto; 
+    flex-direction: column; 
+}
+
+.gameBody {
+    margin-top: 3rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.slNo{    
+    width:20%;    
+    padding-left:5% ;
+    margin-top: 2rem;
+}
+
+.userGuess{
+    display: flex;
+    justify-content: space-evenly;
+    width:40%;    
+    @media(max-width: $desktop-breakpoint) {
+        width:60%;        
+      } 
+}
+
+.cowScore{    
+    justify-content: space-around;
+    width:20%;
+    margin-top: 2rem;
+}
+
+.bullScore{    
+    justify-content: space-around;
+    width:20%;
+    margin-top: 2rem;
+}

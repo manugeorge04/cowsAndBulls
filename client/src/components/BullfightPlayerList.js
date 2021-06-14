@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
+// const players = ['mahathi amencherla', "fknldgeklg"]
 const BullfightPlayerList = (props) => {
   const { players, isPC } = props;
   const classes = useStyles(props);

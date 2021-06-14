@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -12,6 +12,7 @@ import SelectField from '../fields/SelectField';
 import RadioField from '../fields/RadioField';
 
 import { UseFormHook } from '../hooks/UseFormHooks';
+import MyContext from '../context/MyContext';
 
 const useStyles = makeStyles({
   root: {
@@ -98,7 +99,7 @@ const initialValues = {
   name: "Enter your name",
   mode: "",
   rounds: "",
-  roomId: ""
+  roomId: "Enter your Room ID"
 }
 
 const CreateJoinGame = (props) => {
@@ -106,6 +107,11 @@ const CreateJoinGame = (props) => {
   const history = useHistory();
   const classes = useStyles(props);
   const [ errors, setErrors ] = useState({});
+  const { socket, setCurrentGame } = useContext(MyContext);
+
+  socket.on('message', (message) => {
+    console.log(message)        
+})
 
   const validations = (fieldValues = formValues) => {
     let validate = {...errors};
@@ -127,7 +133,7 @@ const CreateJoinGame = (props) => {
 
     if(type === 'join') {
       if('roomId' in fieldValues) {
-        validate.roomId = fieldValues.roomId !== "" ? "" : "Please enter a room ID"
+        validate.roomId = ( fieldValues.roomId === "" || fieldValues.roomId === "Enter your Room ID")  ? "Please enter a room ID" : "";
       }
     }
 
@@ -144,10 +150,40 @@ const CreateJoinGame = (props) => {
   const onsubmit = (e) => {
     e.preventDefault();
     if(validations()) {
-      console.log("allow host")
-      history.push(`/${formValues.mode.toLowerCase()}/lobby`)
+      console.log("allow host")  
+      if (type==='create'){
+        const {mode,rounds} = formValues
+        const userName = formValues.name
+        socket.on('newRoom', (roomId) => {
+          setCurrentGame({
+            ...formValues,
+            roomId,
+            currentRound: 0,
+            winCount: 0,
+            maxGuesses: 3,
+            noOfGuesses: 0
+          });    
+          history.push({
+            pathname: `/${formValues.mode.toLowerCase()}/lobby/${roomId}`
+          })
+        })  //intialize the on before emit to prevent any error due to set-up latency
+        socket.emit('host', {userName, mode, rounds})
+        
+      }else{  //type === join        
+        const userName = formValues.name;
+        const roomId = formValues.roomId.toUpperCase()
+        socket.emit('join', {userName, roomId})
+        socket.on('joinRoom', (mode) => {
+          history.push({
+            pathname: `/${mode.toLowerCase()}/lobby/${roomId}`
+          })
+        })        
+      }            
+      
     }
   }
+
+  
 
   return (
     <Card className={classes.root}>
@@ -185,8 +221,9 @@ const CreateJoinGame = (props) => {
           id="room-id"
           name="roomId"
           label="Room ID"
-          defaultValue="Enter your room ID"
+          defaultValue={formValues.roomId}
           error={errors.roomId}
+          handleInputValues={handleInputValues}
         />}
         </div>
        <Button className={classes.button}

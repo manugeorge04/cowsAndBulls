@@ -5,19 +5,21 @@ import RoundUpRoom from '../components/RoundUpRoom';
 import LobbyCard from '../components/LobbyCard';
 
 const Lobby = (props) =>{
-  const { subHeader, setSubHeader } = useContext(MyContext); 
-
+  const { subHeader, setSubHeader, users,} = useContext(MyContext); 
+  
   useEffect(() => {
-
     setSubHeader(`Playing ${props.match.params.mode}`);
-
   }, [subHeader]);
+
+  // useEffect(() => {
+
+  // }, [users])
 
 
   return (
     <div>
       <RoundUpRoom data={'Round Up Room'}/>
-      <LobbyCard noOfPlayers={1} mode={props.match.params.mode}/>
+      <LobbyCard players={users} mode={props.match.params.mode} roomId={props.match.params.roomId}/>
     </div>
   );
 }

@@ -1,15 +1,16 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 import { useMediaQuery } from "@material-ui/core";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import TeamOne from './TeamOne';
 import TeamTwo from './TeamTwo';
 import BullfightPlayerList from './BullfightPlayerList';
+import MyContext from '../context/MyContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,11 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     fontSize: '2.4rem',
-    width: props => props.isPC ? '15%' : '50%',
+    width: props => props.isPC ? '45%' : '50%',
     backgroundColor: '#0b5394',
     boxShadow: '0px 0px 11px 1px #1D1F26',
     color: "#fff",
-    margin: '0 auto',
     marginBottom: '1.2rem',
     fontWeight: 300,
     textTransform: 'capitalize',
@@ -49,21 +49,31 @@ const useStyles = makeStyles((theme) => ({
   teamDiv: {
     borderBottom: '0.2rem solid #000',
     display: 'flex',
+  },
+  buttonDiv: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '50%',
+    margin: '0 auto',
+    marginBottom: '1.2rem',
+    flexDirection: props => !props.isPC && 'column'
   }
 }));
 
-const teamPlayers = 
-["Player 1","Player 2", "Player 3", "Player 4",
-"Player 5", "Player 6", "Player 7", "Player 8"]
-
-const EachModeContent = (mode, isPC) => {
+const EachModeContent = (mode, isPC, teamPlayers) => {
 
   const props = {
     isPc: isPC
   }
+
   const classes = useStyles(props);
-  const [players, setPlayers] = useState(teamPlayers);
+  const [players, setPlayers] = useState([]);
   const [swappableFirstItem, setSwappableFirstItem] = useState("");
+
+  useEffect(() => {
+    setPlayers(teamPlayers)
+  }, [teamPlayers])
 
   const swap = (swappableSecondItem) => {
     const firstIndex = players.indexOf(swappableFirstItem);
@@ -83,7 +93,6 @@ const EachModeContent = (mode, isPC) => {
     setPlayers(randomPlayers)
   }
 
-
   if(mode === 'cowputer') {
     return (
       <CardContent className={classes.cowputer}>
@@ -101,14 +110,14 @@ const EachModeContent = (mode, isPC) => {
           firstSwap={setSwappableFirstItem} isPC={isPC}/>
         </div>
         <Button className={classes.button} onClick={randomize}
-        style={{width: isPC ? '40%' : '80%', boxShadow: 'none',
+        style={{width: isPC ? '40%' : '80%', boxShadow: 'none', margin: '0 auto',
         marginTop: isPC ? '2rem' : '1rem'}}>Randomize Herds</Button>
       </CardContent>
     )
   } else if (mode === 'bullfight') {
     return (
       <CardContent>
-         <BullfightPlayerList players={players} isPC={isPC}/>
+         {players.length > 0 && <BullfightPlayerList players={players} isPC={isPC}/>}
       </CardContent>
     )
   } else {
@@ -125,18 +134,39 @@ const EachModeContent = (mode, isPC) => {
 }
 
 const LobbyCard = (props) => {
-  const { noOfPlayers, mode } = props;
+  const {socket, currentGame, setCurrentGame} = useContext(MyContext)
+  const { players, mode, roomId } = props;
   const isPC = useMediaQuery("(min-width:768px)", {noSsr:true})  
   const classes = useStyles({...props,isPC});
-  
+
+  const handleStartGame = (mode, roomId, socket) => {
+    if (mode === "cowputer"){
+      setCurrentGame({
+        ...currentGame,
+        currentRound: 1
+      })
+      socket.emit('createWord', roomId)
+    }else {
+      return
+    }
+    
+  }
 
   return (
     <Fragment>
       <Card className={classes.root}>
-        {EachModeContent(mode, isPC)}
+        {EachModeContent(mode, isPC, players)}
       </Card>
-      <Button className={classes.button}>
+      <div className={classes.buttonDiv}>
+      <Button className={classes.button}
+       component={Link} to={`/`} >
+         {/* delete room in this  */}
+        Leave Lobby</Button>
+      <Button className={classes.button}
+       component={Link} to={`/${mode}/${roomId}`} 
+       onClick = {() => handleStartGame(mode, roomId, socket)}   >
         Start Game</Button>
+      </div>
     </Fragment>
   )
 };
